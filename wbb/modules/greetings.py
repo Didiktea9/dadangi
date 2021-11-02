@@ -129,8 +129,8 @@ async def welcome(_, message: Message):
             await message.chat.restrict_member(member.id, ChatPermissions())
             text = (
                 f"{(member.mention())} Are you human?\n"
-                f"Solve this captcha in {WELCOME_DELAY_KICK_SEC} "
-                "seconds and 4 attempts or you'll be kicked."
+                f"Thlalak a inziak khi a hnuai ami ah khuan {WELCOME_DELAY_KICK_SEC} "
+                "seconds chhung a i hmet hmalo emaw vawili i tidiklo anih chuan kick i ni ang."
             )
         except ChatAdminRequired:
             return
