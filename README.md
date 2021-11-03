@@ -28,8 +28,8 @@
 
 <p align="center">
     A Support Group and ready-to-use running instance of this bot can be found on Telegram <br>
-    <a href="https://t.me/WilliamButcherBot"> WilliamButcherBot </a> | 
-    <a href="https://t.me/wbbsupport"> WbbSupport </a>
+    <a href="https://t.me/DikaMs_bot"> WilliamButcherBot </a> | 
+    <a href="https://t.me/lynnsupportgroup"> LynnSupport </a>
 </p>
 
 <h2 align="center"> 
