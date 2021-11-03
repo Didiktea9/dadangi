@@ -56,7 +56,7 @@ async def pmpermit_func(_, message):
     else:
         flood[str(user_id)] = 1
     if flood[str(user_id)] > 5:
-        await message.reply_text("SPAM DETECTED, BLOCKED USER AUTOMATICALLY!")
+        await message.reply_text("BOT NEITU IN A APPROVE HMALOH CHE CHUAN, BLOCKED I NI RIH ANG!")
         return await app2.block_user(user_id)
     results = await app2.get_inline_bot_results(BOT_ID, f"pmpermit {user_id}")
     await app2.send_inline_bot_result(
@@ -187,7 +187,7 @@ async def pmpermit_cq(_, cq):
         else:
             flood2[str(user_id)] = 1
         if flood2[str(user_id)] > 5:
-            await app2.send_message(user_id, "SPAM DETECTED, USER BLOCKED.")
+            await app2.send_message(user_id, "APPROVED I NIH HMA CHU, BLOCKED RIH I NI ANG.")
             return await app2.block_user(user_id)
         await app2.send_message(
             user_id,
