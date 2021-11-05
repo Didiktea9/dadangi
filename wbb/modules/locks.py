@@ -43,7 +43,7 @@ Parameters:
 You can only pass the "all" parameter with /lock, not with /unlock
 
 Example:
-    /lock all
+    ➤/lock all
 """
 
 incorrect_parameters = "Incorrect Parameters, Check Locks Section In Help."
