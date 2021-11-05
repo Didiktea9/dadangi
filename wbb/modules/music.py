@@ -156,7 +156,7 @@ async def jssong(_, message):
         )
     is_downloading = True
     text = message.text.split(None, 1)[1]
-    m = await message.reply_text("Searching...")
+    m = await message.reply_text("zawn mek ani e...")
     try:
         songs = await arq.saavn(text)
         if not songs.ok:
@@ -167,9 +167,9 @@ async def jssong(_, message):
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
         sduration = songs.result[0].duration
-        await m.edit("Downloading")
+        await m.edit("**Download mek ani e...**")
         song = await download_song(slink)
-        await m.edit("Uploading")
+        await m.edit("**Upload mek ani e...**")
         await message.reply_audio(
             audio=song,
             title=sname,
@@ -191,7 +191,7 @@ async def jssong(_, message):
 async def lyrics_func(_, message):
     if len(message.command) < 2:
         return await message.reply_text("**Usage:**\n/lyrics [QUERY]")
-    m = await message.reply_text("**Searching**")
+    m = await message.reply_text("**zawng mek...**")
     query = message.text.strip().split(None, 1)[1]
     song = await arq.lyrics(query)
     lyrics = song.result
