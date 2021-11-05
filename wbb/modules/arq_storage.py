@@ -38,7 +38,7 @@ Upload unlimited files smaller than 100MB
 And get a download link
 
 **Usage:**
-    /upload [url|Reply to a file]
+    ➤/upload [url|Reply to a file]
 """
 
 UPLOAD_LOCK = Lock()
