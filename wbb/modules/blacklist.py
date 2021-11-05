@@ -38,9 +38,9 @@ from wbb.utils.filter_groups import blacklist_filters_group
 
 __MODULE__ = "Blacklist"
 __HELP__ = """
-/blacklisted - Get All The Blacklisted Words In The Chat.
-/blacklist [WORD|SENTENCE] - Blacklist A Word Or A Sentence.
-/whitelist [WORD|SENTENCE] - Whitelist A Word Or A Sentence.
+➤blacklisted - Get All The Blacklisted Words In The Chat.
+➤blacklist [WORD|SENTENCE] - Blacklist A Word Or A Sentence.
+➤whitelist [WORD|SENTENCE] - Whitelist A Word Or A Sentence.
 """
 
 
