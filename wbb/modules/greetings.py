@@ -128,7 +128,7 @@ async def welcome(_, message: Message):
 
             await message.chat.restrict_member(member.id, ChatPermissions())
             text = (
-                f"{(member.mention())} Mihring i ni ngei em?\n"
+                f"{(member.mention())} Mihring i ni ngei em?\n\n"
                 f"Thlalak a inziak khi a hnuai ami ah khuan {WELCOME_DELAY_KICK_SEC} "
                 "seconds chhung a i hmet hmanlo emaw vawi 4 i tidiklo anih chuan kick i ni ang."
             )
