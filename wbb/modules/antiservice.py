@@ -12,7 +12,7 @@ __MODULE__ = "AntiService"
 __HELP__ = """
 Plugin to delete service messages in a chat!
 
-/antiservice [enable|disable]
+➤/antiservice [enable|disable]
 """
 
 
