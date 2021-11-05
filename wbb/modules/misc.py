@@ -36,53 +36,53 @@ from wbb.utils.pastebin import paste
 
 __MODULE__ = "Lynn"
 __HELP__ = """
-/Lynn
+➤/Lynn
     Ask a question
 
-/commit
+➤/commit
     Generate Funny Commit Messages
 
-/runs
+➤/runs
     Idk Test Yourself
 
-/id
+➤/id
     Get Chat_ID or User_ID
 
-/random [Length]
+➤/random [Length]
     Generate Random Complex Passwords
 
-/cheat [Language] [Query]
+➤/cheat [Language] [Query]
     Get Programming Related Help
 
-/tr [LANGUAGE_CODE]
+➤/tr [LANGUAGE_CODE]
     Translate A Message
     Ex: /tr en
 
-/json [URL]
+➤/json [URL]
     Get parsed JSON response from a rest API.
 
-/arq
+➤/arq
     Statistics Of ARQ API.
 
-/webss [URL]
+➤/webss [URL]
     Take A Screenshot Of A Webpage
 
-/reverse
+➤/reverse
     Reverse search an image.
 
-/carbon
+➤/carbon
     Make Carbon from code.
 
-/tts
+➤/tts
     Convert Text To Speech.
 
-/autocorrect [Reply to a message]
+➤/autocorrect [Reply to a message]
     Autocorrects the text in replied message.
 
-/pdf [Reply to an image (as document) or a group of images.]
+➤/pdf [Reply to an image (as document) or a group of images.]
     Convert images to PDF, helpful for online classes.
 
-/markdownhelp
+➤/markdownhelp
     Sends mark down and formatting help.
 
 #RTFM - Tell noobs to read the manual
