@@ -36,7 +36,7 @@ __HELP__ = """
 Use this module to create a pipe that will forward messages of one chat/channel to another.
 
 
-/activate_pipe [FROM_CHAT_ID] [TO_CHAT_ID] [BOT|USERBOT]
+➤/activate_pipe [FROM_CHAT_ID] [TO_CHAT_ID] [BOT|USERBOT]
 
     Active a pipe.
 
@@ -45,11 +45,11 @@ Use this module to create a pipe that will forward messages of one chat/channel 
     message from 'FROM_CHAT'.
 
 
-/deactivate_pipe [FROM_CHAT_ID]
+➤/deactivate_pipe [FROM_CHAT_ID]
     Deactivete a pipe.
 
 
-/show_pipes
+➤/show_pipes
     Show all the active pipes.
 
 **NOTE:**
