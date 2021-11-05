@@ -41,11 +41,11 @@ from wbb.utils.stickerset import (add_sticker_to_set, create_sticker,
 
 __MODULE__ = "Stickers"
 __HELP__ = """
-/sticker_id
+➤/sticker_id
     To get FileID of a Sticker.
-/get_sticker
+➤/get_sticker
     To get sticker as a photo and document.
-/kang
+➤/kang
     To kang a Sticker or an Image."""
 
 MAX_STICKERS = (
