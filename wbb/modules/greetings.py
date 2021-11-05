@@ -47,13 +47,13 @@ from wbb.utils.functions import extract_text_and_keyb, generate_captcha
 
 __MODULE__ = "Greetings"
 __HELP__ = """
-/captcha [ENABLE|DISABLE] - Enable/Disable captcha.
+➤/captcha [ENABLE|DISABLE] - Enable/Disable captcha.
 
-/set_welcome - Reply this to a message containing correct
+➤/set_welcome - Reply this to a message containing correct
 format for a welcome message, check end of this message.
 
-/del_welcome - Delete the welcome message.
-/get_welcome - Get the welcome message.
+➤/del_welcome - Delete the welcome message.
+➤/get_welcome - Get the welcome message.
 
 **SET_WELCOME ->**
 
