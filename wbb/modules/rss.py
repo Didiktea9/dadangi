@@ -12,8 +12,8 @@ from wbb.utils.rss import Feed
 
 __MODULE__ = "RSS"
 __HELP__ = f"""
-/add_feed [URL] - Add a feed to chat
-/rm_feed - Remove feed from chat
+➤/add_feed [URL] - Add a feed to chat
+➤/rm_feed - Remove feed from chat
 
 **Note:**
     - This will check for updates every {RSS_DELAY//60} minutes.
