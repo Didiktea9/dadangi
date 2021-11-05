@@ -33,9 +33,9 @@ __MODULE__ = "Sudo"
 __HELP__ = """
 **THIS MODULE IS ONLY FOR DEVS**
 
-.useradd - To Add A User In Sudoers.
-.userdel - To Remove A User From Sudoers.
-.sudoers - To List Sudo Users.
+➤.useradd - To Add A User In Sudoers.
+➤.userdel - To Remove A User From Sudoers.
+➤.sudoers - To List Sudo Users.
 
 **NOTE:**
 
