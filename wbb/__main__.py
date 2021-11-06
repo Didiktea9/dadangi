@@ -164,7 +164,7 @@ keyboard = InlineKeyboardMarkup(
 async def start(_, message):
     if message.chat.type != "private":
         return await message.reply(
-            "Min hriatchian duh chuan Private ah minlo be rawh.", reply_markup=keyboard
+            "**A hnuai a button te khu hmet keuh rawh**.", reply_markup=keyboard
         )
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
@@ -215,11 +215,11 @@ async def help_command(_, message):
                 )
             else:
                 await message.reply(
-                    "Min hriatchian duh chuan private ah minlo be rawh.", reply_markup=keyboard
+                    "**A hnuai a button te khu hmet keuh rawh**.", reply_markup=keyboard
                 )
         else:
             await message.reply(
-                "Min hriatchian duh chuan private ah minlo be rawh.", reply_markup=keyboard
+                "**A hnuai a button te khu hmet keuh rawh**.", reply_markup=keyboard
             )
     else:
         if len(message.command) >= 2:
@@ -296,8 +296,8 @@ I group enkawl tu atan min hmang thei ang.
     if mod_match:
         module = mod_match.group(1)
         text = (
-            "{} **{}**』:\n".format(
-                "**『Help for**", HELPABLE[module].__MODULE__
+            "{} **{}**」:\n".format(
+                "**「Help for**", HELPABLE[module].__MODULE__
             )
             + HELPABLE[module].__HELP__
         )
@@ -305,7 +305,7 @@ I group enkawl tu atan min hmang thei ang.
         await query.message.edit(
             text=text,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("🔙 Back", callback_data="help_back")]]
+                [[InlineKeyboardButton("「🔙 Back」", callback_data="help_back")]]
             ),
             disable_web_page_preview=True,
         )
