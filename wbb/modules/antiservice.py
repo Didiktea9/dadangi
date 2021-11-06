@@ -10,7 +10,7 @@ from wbb.utils.dbfunctions import (antiservice_off, antiservice_on,
 
 __MODULE__ = "AntiService"
 __HELP__ = """
-Service messages te in delete nghal tur a i duh chuan eneble khuan i command dawn nia!
+Service messages te in delete nghal tur a i duh chuan enable khuan i command dawn nia!
 
 ➤/antiservice [enable|disable]
 """
