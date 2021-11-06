@@ -31,30 +31,30 @@ from wbb.core.decorators.errors import capture_err
 
 __MODULE__ = "Pipes"
 __HELP__ = """
-**THIS MODULE IS ONLY FOR DEVS**
+**HE MODULE HI CHU DEVS TAN BIK AW**
 
-Use this module to create a pipe that will forward messages of one chat/channel to another.
+He module hi  gruop/channel atang a adang a forward na ani.
 
 
-➤/activate_pipe [FROM_CHAT_ID] [TO_CHAT_ID] [BOT|USERBOT]
+➤/activate_pipe [group id] [group dang id] [BOT|USERBOT]
 
     Active a pipe.
 
-    choose 'BOT' or 'USERBOT' according to your needs,
-    this will decide which client will fetch the
-    message from 'FROM_CHAT'.
+    'BOT' emaw 'USERBOT' emaw zawk zawk i hmang thei a,
+    pakhat zawk zawk khian group
+    message te a va thur chhuak ang.
 
 
 ➤/deactivate_pipe [FROM_CHAT_ID]
-    Deactivete a pipe.
+    Pipe deactive na.
 
 
 ➤/show_pipes
-    Show all the active pipes.
+    pipes active lai en na.
 
 **NOTE:**
-    These pipes are only temporary, and will be destroyed
-    on restart.
+    He Pipes hi chu temporary mai ani a, bot restart in
+    set that leh zel angai.
 """
 pipes_list_bot = {}
 pipes_list_userbot = {}
@@ -102,7 +102,7 @@ async def activate_pipe_func(_, message: Message):
 
     if len(message.command) != 4:
         return await message.reply(
-            "**Usage:**\n/activate_pipe [FROM_CHAT_ID] [TO_CHAT_ID] [BOT|USERBOT]"
+            "**Usage:**\n/activate_pipe [Group id] [Group dang id] [BOT|USERBOT]"
         )
 
     text = message.text.strip().split()
@@ -112,10 +112,10 @@ async def activate_pipe_func(_, message: Message):
     fetcher = text[3].lower()
 
     if fetcher not in ["bot", "userbot"]:
-        return await message.reply("Wrong fetcher, see help menu.")
+        return await message.reply("Diklo tlat, tih that leh angai.")
 
     if from_chat in pipes_list_bot or from_chat in pipes_list_userbot:
-        return await message.reply_text("This pipe is already active.")
+        return await message.reply_text("He pipe hi a active mek e.")
 
     dict_ = pipes_list_bot
     if fetcher == "userbot":
@@ -137,7 +137,7 @@ async def deactivate_pipe_func(_, message: Message):
     from_chat = int(text[1])
 
     if from_chat not in pipes_list_bot and from_chat not in pipes_list_userbot:
-        await message.reply_text("This pipe is already inactive.")
+        await message.reply_text("he pipe hi chu a active tawhlo.")
 
     dict_ = pipes_list_bot
     if from_chat in pipes_list_userbot:
@@ -152,7 +152,7 @@ async def deactivate_pipe_func(_, message: Message):
 async def show_pipes_func(_, message: Message):
     pipes_list_bot.update(pipes_list_userbot)
     if not pipes_list_bot:
-        return await message.reply_text("No pipe is active.")
+        return await message.reply_text("pipe hi a active mek e.")
 
     text = ""
     for count, pipe in enumerate(pipes_list_bot.items(), 1):
