@@ -13,9 +13,9 @@ __HELP__ = """
 Use this module to make the bot leave some chats
 in which you don't want it to be in.
 
-➤/blacklist_chat [CHAT_ID] - Blacklist a chat.
-➤/whitelist_chat [CHAT_ID] - Whitelist a chat.
-➤/blacklisted - Show blacklisted chats.
+➤/blacklist_chat [CHAT_ID] - Chat Blacklist a add na.
+➤/whitelist_chat [CHAT_ID] - Chat Whitelist a add na.
+➤/blacklisted - blacklisted chat ho enna.
 """
 
 
@@ -28,11 +28,11 @@ async def blacklist_chat_func(_, message: Message):
         )
     chat_id = int(message.text.strip().split()[1])
     if chat_id in await blacklisted_chats():
-        return await message.reply_text("Chat is already blacklisted.")
+        return await message.reply_text("blacklist a a in add daih tawh.")
     blacklisted = await blacklist_chat(chat_id)
     if blacklisted:
         return await message.reply_text(
-            "Chat has been successfully blacklisted"
+            "Hlawhtling takin blacklist add ani e"
         )
     await message.reply_text("Something wrong happened, check logs.")
 
@@ -50,7 +50,7 @@ async def whitelist_chat_func(_, message: Message):
     whitelisted = await whitelist_chat(chat_id)
     if whitelisted:
         return await message.reply_text(
-            "Chat has been successfully whitelisted"
+            "Hlawhtling takin whitelist add ani e"
         )
     await message.reply_text("Something wrong happened, check logs.")
 
