@@ -38,9 +38,9 @@ from wbb.utils.filter_groups import flood_group
 
 __MODULE__ = "Flood"
 __HELP__ = """
-**Anti-Flood system, the one who sends more than 10 messages in a row, gets muted for an hour (Except for admins)**.
+**Anti-Flood system, mi in a zawnin message 10 aia tam an thawn chuan datkar khat chhung mute an ni ang (Hei hian admin te a huamlo thung)**.
 
-➤/flood [ENABLE|DISABLE] - Turn flood detection on or off
+➤/flood [ENABLE|DISABLE] - Flood mode on leh off na
 """
 
 
@@ -113,7 +113,7 @@ async def flood_control_func(_, message: Message):
             ]
         )
         m = await message.reply_text(
-            f"Imagine flooding the chat in front of me, Muted {mention} for an hour!",
+            f"Hahchawl ve lawk rawh aw, {mention} hi Darkarkhat hahchawlh tir ani e!",
             reply_markup=keyboard,
         )
 
@@ -136,7 +136,7 @@ async def flood_callback_func(_, cq: CallbackQuery):
     permission = "can_restrict_members"
     if permission not in permissions:
         return await cq.answer(
-            "You don't have enough permissions to perform this action.\n"
+            "He thil ti ve tur hian thuneihna i nei ve lo.\n"
             + f"Permission needed: {permission}",
             show_alert=True,
         )
