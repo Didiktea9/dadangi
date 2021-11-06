@@ -38,9 +38,9 @@ from wbb.utils.filter_groups import blacklist_filters_group
 
 __MODULE__ = "Blacklist"
 __HELP__ = """
-➤blacklisted - Get All The Blacklisted Words In The Chat.
-➤blacklist [WORD|SENTENCE] - Blacklist A Word Or A Sentence.
-➤whitelist [WORD|SENTENCE] - Whitelist A Word Or A Sentence.
+➤blacklisted - Blacklisted Word zawng zawng en na.
+➤blacklist [WORD|SENTENCE] - Word emaw Sentence emaw blacklist a add na.
+➤whitelist [WORD|SENTENCE] - Word emaw Sentence emaw whitelist a add na.
 """
 
 
@@ -68,7 +68,7 @@ async def save_filters(_, message):
 async def get_filterss(_, message):
     data = await get_blacklisted_words(message.chat.id)
     if not data:
-        await message.reply_text("**No blacklisted words in this chat.**")
+        await message.reply_text("**Group ah hian Blacklist engmah a awm rih lo.**")
     else:
         msg = f"List of blacklisted words in {message.chat.title}\n"
         for word in data:
@@ -90,7 +90,7 @@ async def del_filter(_, message):
     deleted = await delete_blacklist_filter(chat_id, word)
     if deleted:
         return await message.reply_text(f"**Whitelisted {word}.**")
-    await message.reply_text("**No such blacklist filter.**")
+    await message.reply_text("**blacklist filter hmuh ani lo tlat.**")
 
 
 @app.on_message(filters.text & ~filters.private, group=blacklist_filters_group)
@@ -121,6 +121,6 @@ async def blacklist_filters_re(_, message):
                 return
             return await app.send_message(
                 chat_id,
-                f"Muted {user.mention} [`{user.id}`] for 1 hour "
-                + f"due to a blacklist match on {word}.",
+                f"{user.mention} [`{user.id}`] hi 1 hour chhung mute rih ani "
+                + f"{word} a hman vang ani.",
             )
