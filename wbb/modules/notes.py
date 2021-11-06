@@ -98,7 +98,7 @@ async def get_notes(_, message):
     if not _notes:
         return await eor(message, text="**He group ah hian notes save lai a awm rihlo.**")
     _notes.sort()
-    msg = f"List of notes in {'USERBOT' if is_ubot else message.chat.title}\n"
+    msg = f"{'USERBOT' if is_ubot else message.chat.title} a note save lai te chu\n"
     for note in _notes:
         msg += f"**-** `{note}`\n"
     await eor(message, text=msg)
