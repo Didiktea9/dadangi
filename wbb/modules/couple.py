@@ -31,7 +31,7 @@ from wbb.core.decorators.errors import capture_err
 from wbb.utils.dbfunctions import get_couple, save_couple
 
 __MODULE__ = "Couple"
-__HELP__ = "➤/couple - To Choose Couple Of The Day"
+__HELP__ = "➤/couple - Nikhat atan kawppui thlanna"
 
 
 # Date and time
@@ -61,7 +61,7 @@ tomorrow = str(dt_tom())
 @capture_err
 async def couple(_, message):
     if message.chat.type == "private":
-        return await message.reply_text("This command only works in groups.")
+        return await message.reply_text("He command hi chu Group ah chiah a theih.")
     try:
         chat_id = message.chat.id
         is_selected = await get_couple(chat_id, today)
@@ -71,7 +71,7 @@ async def couple(_, message):
                 if not i.user.is_bot:
                     list_of_users.append(i.user.id)
             if len(list_of_users) < 2:
-                return await message.reply_text("Not enough users")
+                return await message.reply_text("Mi an tlem lutuk")
             c1_id = random.choice(list_of_users)
             c2_id = random.choice(list_of_users)
             while c1_id == c2_id:
@@ -79,7 +79,7 @@ async def couple(_, message):
             c1_mention = (await app.get_users(c1_id)).mention
             c2_mention = (await app.get_users(c2_id)).mention
 
-            couple_selection_message = f"""**Couple of the day:**
+            couple_selection_message = f"""**Vawiin atan a in kawprem ber te chu:**
 {c1_mention} + {c2_mention} = ❤️
 
 __New couple of the day may be chosen at 12AM {tomorrow}__"""
