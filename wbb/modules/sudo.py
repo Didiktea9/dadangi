@@ -31,17 +31,17 @@ from wbb.utils.functions import restart
 
 __MODULE__ = "Sudo"
 __HELP__ = """
-**THIS MODULE IS ONLY FOR DEVS**
+**HE MODULE HI CHU DEVS HO TAN BIK ANI**
 
-➤.useradd - To Add A User In Sudoers.
-➤.userdel - To Remove A User From Sudoers.
-➤.sudoers - To List Sudo Users.
+➤.useradd - Sudoers a mi add na.
+➤.userdel - Sudoers atang a mi paihna.
+➤.sudoers - Sudo Users list en na.
 
 **NOTE:**
 
-Never add anyone to sudoers unless you trust them,
-sudo users can do anything with your account, they
-can even delete your account.
+Tumah Sudoers ah hian add ringawt suh i ringtawk hle te anih loh chuan,
+sudo users hian i account ah engpawh an ti thei vek a, an duh chuan
+i account pawh an delete thei.
 """
 
 
@@ -53,7 +53,7 @@ async def useradd(_, message: Message):
     if not message.reply_to_message:
         return await eor(
             message,
-            text="Reply to someone's message to add him to sudoers.",
+            text="Sudoers a add tur chuan an message i reply tel angai.",
         )
     user_id = message.reply_to_message.from_user.id
     umention = (await app2.get_users(user_id)).mention
@@ -62,13 +62,13 @@ async def useradd(_, message: Message):
         return await eor(message, text=f"{umention} is already in sudoers.")
     if user_id == BOT_ID:
         return await eor(
-            message, text="You can't add assistant bot in sudoers."
+            message, text="Sudoers ah hi chuan bot asssistant a add theih loh."
         )
     added = await add_sudo(user_id)
     if added:
         await eor(
             message,
-            text=f"Successfully added {umention} in sudoers, Bot will be restarted now.",
+            text=f"Hlawhtling takin {umention} chu sudoers ah add ani e, Bot hi a in restart nghal ang.",
         )
         return await restart(None)
     await eor(message, text="Something wrong happened, check logs.")
@@ -92,7 +92,7 @@ async def userdel(_, message: Message):
     if removed:
         await eor(
             message,
-            text=f"Successfully removed {umention} from sudoers, Bot will be restarted now.",
+            text=f"Hlawhtling takin {umention} chu sudoers atang delete ani e, Bot a in restart nghal ang.",
         )
         return await restart(None)
     await eor(message, text="Something wrong happened, check logs.")
