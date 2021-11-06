@@ -80,7 +80,7 @@ async def save_notee(_, message):
         prefix = message.text.split()[0][0]
         chat_id = message.chat.id if prefix != USERBOT_PREFIX else USERBOT_ID
         await save_note(chat_id, name, note)
-        await eor(message, text=f"__**Saved note {name}.**__")
+        await eor(message, text=f"__**{name} hi note ah save ani e.**__")
 
 
 @app2.on_message(
