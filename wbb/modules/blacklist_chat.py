@@ -8,13 +8,13 @@ from wbb.utils.dbfunctions import (blacklist_chat, blacklisted_chats,
 
 __MODULE__ = "Blacklist Chat"
 __HELP__ = """
-**THIS MODULE IS ONLY FOR DEVS**
+**HE MODULE HI CHU DEVS TAN BIK ANI E**.
 
-Use this module to make the bot leave some chats
-in which you don't want it to be in.
+Devs Users tan lo chuan a work ve lem lo a
+Midang tan chuan tangkaina avang viau.
 
-➤/blacklist_chat [CHAT_ID] - Chat Blacklist a add na.
-➤/whitelist_chat [CHAT_ID] - Chat Whitelist a add na.
+➤/blacklist_chat [chat id] - Chat Blacklist a add na.
+➤/whitelist_chat [chat id] - Chat Whitelist a add na.
 ➤/blacklisted - blacklisted chat ho enna.
 """
 
