@@ -49,15 +49,14 @@ __MODULE__ = "Greetings"
 __HELP__ = """
 ➤/captcha [ENABLE|DISABLE] - Captcha on na leh off na.
 
-➤/set_welcome - Format diktak a welcome message tur a
-i duh kha reply tur, a tawplam ah khuan format chu i en dawn nia.
+➤/set_welcome - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
 
 ➤/del_welcome - Welcome message delete na.
 ➤/get_welcome - Welcome message set mek en na.
 
 **SET_WELCOME ->**
 
-A format chu  a hnuai ami ang hian i set dawn nia.
+**A format chu  a hnuai ami ang hian i set dawn nia.**
 
 ```
 **Hi** {name} Welcome to {chat}
