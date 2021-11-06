@@ -34,18 +34,18 @@ from wbb.utils.functions import get_file_id_from_message
 
 __MODULE__ = "Storage"
 __HELP__ = """
-Upload unlimited files smaller than 100MB
-And get a download link
+100MB aia lianlo file lo thawn la
+download link kalo pe ang che.
 
 **Usage:**
-    ➤/upload [url|Reply to a file]
+    ➤/upload [url|file reply rawh]
 """
 
 UPLOAD_LOCK = Lock()
 
 
 async def upload(m: Message, file: str = None, url: str = None):
-    err = "Something went wrong"
+    err = "Thil diklo a awm tlat"
     try:
         resp = await arq.upload(file=file, url=url)
     except Exception:
@@ -75,25 +75,25 @@ async def arq_upload(_, message):
     if message.reply_to_message:
         if UPLOAD_LOCK.locked():
             return await message.reply(
-                "One upload is already in progress, please try again later"
+                "Upload mek a awm a, nakin deuh ah i ti leh dawn nia"
             )
         async with UPLOAD_LOCK:
             r = message.reply_to_message
 
             file_id = get_file_id_from_message(r, 100000000, None)
             if not file_id:
-                return await message.reply("Unsupported media.")
+                return await message.reply("I thil upload hi a support lo.")
 
             m = await message.reply("Downloading...")
             file = await app.download_media(file_id)
 
-            await m.edit("Uploading...")
+            await m.edit("Upload mek...")
             return await upload(m, file=file)
 
     if len(message.command) != 2:
-        return await message.reply("Not enough arguments")
+        return await message.reply("Diklo a awm")
 
     url = message.text.split(None, 1)[1]
 
-    m = await message.reply("Uploading...")
+    m = await message.reply("Upload mek...")
     await upload(m, url=url)
