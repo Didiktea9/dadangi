@@ -52,7 +52,7 @@ __HELP__ = """
 
 ➤/update - Bot Update leh Restart na
 
-➤/eval - Python Code tawh tir na
+➤/eval - Python Code thawh tir na
 
 ➤/sh - Shell Code thawh tir na
 """
@@ -69,11 +69,11 @@ async def bot_sys_stats():
     stats = f"""
 {USERBOT_USERNAME}@Lynn
 ------------------
-**UPTIME:** {formatter.get_readable_time((bot_uptime))}
-**BOT:** {round(process.memory_info()[0] / 1024 ** 2)} MB
-**CPU:** {cpu}%
-**RAM:** {mem}%
-**DISK:** {disk}%
+UPTIME: {formatter.get_readable_time((bot_uptime))}
+BOT: {round(process.memory_info()[0] / 1024 ** 2)} MB
+CPU: {cpu}%
+RAM: {mem}%
+DISK: {disk}%
 """
     return stats
 
