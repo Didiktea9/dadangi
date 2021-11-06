@@ -35,14 +35,14 @@ from wbb.utils.filter_groups import chat_filters_group
 from wbb.utils.functions import extract_text_and_keyb
 
 __MODULE__ = "Filters"
-__HELP__ = """➤/filters To Get All The Filters In The Chat.
-➤/filter [FILTER_NAME] To Save A Filter (Can be a sticker or text).
-➤/stop [FILTER_NAME] To Stop A Filter.
+__HELP__ = """➤/filters Group a filter ho te en na.
+➤/filter [FILTER_NAME] Filter save na (sticker emaw text pawh a theih ve ve).
+➤/stop [FILTER_NAME] Filter tihtawp na.
 
 
-You can use markdown or html to save text too.
+Markdown emaw html emaw text save tur hian i hmang thei ve ve bawk.
 
-Checkout /markdownhelp to know more about formattings and other syntax.
+/markdownhelp hi formattings leh syntax chungchang hriatchian i duh chuan i chhiar dawn nia.
 """
 
 
@@ -51,14 +51,14 @@ Checkout /markdownhelp to know more about formattings and other syntax.
 async def save_filters(_, message):
     if len(message.command) < 2 or not message.reply_to_message:
         return await message.reply_text(
-            "**Usage:**\nReply to a text or sticker with /filter [FILTER_NAME] to save it."
+            "**Usage:**\nText emaw sticker emaw /filter [FILTER_NAME] tih hmang hian reply rawh."
         )
     if (
         not message.reply_to_message.text
         and not message.reply_to_message.sticker
     ):
         return await message.reply_text(
-            "__**You can only save text or stickers in filters.**__"
+            "__**Text or sticker bak Flter ah a save theihloh.**__"
         )
     name = message.text.split(None, 1)[1].strip()
     if not name:
@@ -84,7 +84,7 @@ async def save_filters(_, message):
 async def get_filterss(_, message):
     _filters = await get_filters_names(message.chat.id)
     if not _filters:
-        return await message.reply_text("**No filters in this chat.**")
+        return await message.reply_text("**He Group ah hian filters hmuhtur a awm tlat lo.**")
     _filters.sort()
     msg = f"List of filters in {message.chat.title}\n"
     for _filter in _filters:
