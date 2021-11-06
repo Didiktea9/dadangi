@@ -29,7 +29,7 @@ from wbb import app
 from wbb.utils.inlinefuncs import *
 
 __MODULE__ = "Inline"
-__HELP__ = """See inline for help related to inline"""
+__HELP__ = """Inline chungchang hriatchian na"""
 
 
 @app.on_inline_query()
