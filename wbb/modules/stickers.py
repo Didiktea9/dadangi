@@ -41,12 +41,9 @@ from wbb.utils.stickerset import (add_sticker_to_set, create_sticker,
 
 __MODULE__ = "Stickers"
 __HELP__ = """
-➤/sticker_id
-    Sticker id hriatna.
-➤/get_sticker
-    Sticker kha thlalak leh document a lak chhuahna.
-➤/kang
-    Sticker in emoji a a milpui hratna."""
+➤/sticker_id - Sticker id hriatna.
+➤/get_sticker - Sticker kha thlalak leh document a lak chhuahna.
+➤/kang - Sticker in emoji a a milpui hratna."""
 
 MAX_STICKERS = (
     120  # would be better if we could fetch this limit directly from telegram
