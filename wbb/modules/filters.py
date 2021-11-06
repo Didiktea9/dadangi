@@ -36,13 +36,13 @@ from wbb.utils.functions import extract_text_and_keyb
 
 __MODULE__ = "Filters"
 __HELP__ = """➤/filters Group a filter ho te en na.
-➤/filter [FILTER_NAME] Filter save na (sticker emaw text pawh a theih ve ve).
-➤/stop [FILTER_NAME] Filter tihtawp na.
+➤/filter [Filter hming] Filter save na (sticker emaw text pawh a theih ve ve).
+➤/stop [Filter hming] Filter tihtawp na.
 
 
-Markdown emaw html emaw text save tur hian i hmang thei ve ve bawk.
+A save nan hian html pawh i hmang thei.
 
-/markdownhelp hi formattings leh syntax chungchang hriatchian i duh chuan i chhiar dawn nia.
+/markdownhelp tih hi thawn tawp la i fiah kuar mai ang.
 """
 
 
