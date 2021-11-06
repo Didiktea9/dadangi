@@ -39,7 +39,7 @@ __MODULE__ = "Karma"
 __HELP__ = """[UPVOTE] - Upvote keywords hi "+", "+1", "thanks" etc te a hman theih.
 [DOWNVOTE] - Downvote keywords hi "-", "-1", etc te a hmantheih bawk.
 ➤/karma_toggle [ENABLE|DISABLE] - I group a Karma on na leh off na.
-/karma tih hmang hian thu reply la karma hmangtu i thei ang
+/karma tih hmang hian thu reply la karma hmangtu point zat hre thei ang.
 /karma tih ringawt hi eng message mah reply lova i thawn chuan karma list top 10 users te i hrethei bawk ang"""
 
 
