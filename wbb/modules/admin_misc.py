@@ -30,9 +30,9 @@ from wbb.core.decorators.permissions import adminsOnly
 
 __MODULE__ = "Admin Miscs"
 __HELP__ = """
-➤/set_chat_title - Change The Name Of A Group/Channel.
-➤/set_chat_photo - Change The PFP Of A Group/Channel.
-➤/set_user_title - Change The Administrator Title Of An Admin.
+➤/set_chat_title - Group/Channel hming thlak na.
+➤/set_chat_photo - Group/Channel Thlalak te thlak na.
+➤/set_user_title - Admin title thlakna.
 """
 
 
@@ -40,12 +40,12 @@ __HELP__ = """
 @adminsOnly("can_change_info")
 async def set_chat_title(_, message):
     if len(message.command) < 2:
-        return await message.reply_text("**Usage:**\n/set_chat_title NEW NAME")
+        return await message.reply_text("**Usage:**\n/set_chat_title HMING THAR")
     old_title = message.chat.title
     new_title = message.text.split(None, 1)[1]
     await message.chat.set_title(new_title)
     await message.reply_text(
-        f"Successfully Changed Group Title From {old_title} To {new_title}"
+        f"Hlawhtling takin Group Title {old_title} chu {new_title} ah thlak ani e"
     )
 
 
@@ -54,11 +54,11 @@ async def set_chat_title(_, message):
 async def set_user_title(_, message):
     if not message.reply_to_message:
         return await message.reply_text(
-            "Reply to user's message to set his admin title"
+            "Admin title thlak tur chuan a message reply khian command rawh"
         )
     if not message.reply_to_message.from_user:
         return await message.reply_text(
-            "I can't change admin title of an unknown entity"
+            "Admin title hi ka thlak thei rihlo"
         )
     chat_id = message.chat.id
     from_user = message.reply_to_message.from_user
@@ -69,7 +69,7 @@ async def set_user_title(_, message):
     title = message.text.split(None, 1)[1]
     await app.set_administrator_title(chat_id, from_user.id, title)
     await message.reply_text(
-        f"Successfully Changed {from_user.mention}'s Admin Title To {title}"
+        f"Hlawhtling tak in {from_user.mention}'s Admin Title chu {title} ah thlak ani e"
     )
 
 
@@ -80,13 +80,13 @@ async def set_chat_photo(_, message):
 
     if not reply:
         return await message.reply_text(
-            "Reply to a photo to set it as chat_photo"
+            "chat_photo thlak tur chuan thlalak reply angai"
         )
 
     file = reply.document or reply.photo
     if not file:
         return await message.reply_text(
-            "Reply to a photo or document to set it as chat_photo"
+            "chat_photo thlak tur chuan thlalak emaw document emaw reply angai"
         )
 
     if file.file_size > 5000000:
@@ -94,5 +94,5 @@ async def set_chat_photo(_, message):
 
     photo = await reply.download()
     await message.chat.set_photo(photo)
-    await message.reply_text("Successfully Changed Group Photo")
+    await message.reply_text("Hlawhtling tak in Group Photo thlak ani e")
     os.remove(photo)
