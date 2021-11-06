@@ -27,14 +27,14 @@ from wbb import app, arq
 from wbb.core.decorators.errors import capture_err
 
 __MODULE__ = "Reddit"
-__HELP__ = "➤/reddit [query] - results something from reddit"
+__HELP__ = "➤/reddit [query] - Reddit atang a thil zawnna"
 
 
 @app.on_message(filters.command("reddit") & ~filters.edited)
 @capture_err
 async def reddit(_, message):
     if len(message.command) != 2:
-        return await message.reply_text("/reddit needs an argument")
+        return await message.reply_text("/reddit thu awmze nei type rawh")
     subreddit = message.text.split(None, 1)[1]
     m = await message.reply_text("Searching")
     reddit = await arq.reddit(subreddit)
