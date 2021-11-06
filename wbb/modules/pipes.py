@@ -41,16 +41,12 @@ He module hi  gruop/channel atang a adang a forward na ani.
     message te a va thur chhuak ang.
 
 
-➤/deactivate_pipe [FROM_CHAT_ID]
-    Pipe deactive na.
+➤/deactivate_pipe [FROM_CHAT_ID] - Pipe deactive na.
 
-
-➤/show_pipes
-    pipes active lai en na.
+➤/show_pipes - pipes active lai en na.
 
 **NOTE:**
-    He Pipes hi chu temporary mai ani a, bot restart in
-    set that leh zel angai.
+    He Pipes hi chu temporary mai ani a, bot restart in set that leh zel angai.
 """
 pipes_list_bot = {}
 pipes_list_userbot = {}
