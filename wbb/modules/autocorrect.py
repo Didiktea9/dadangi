@@ -8,14 +8,14 @@ from wbb.utils.filter_groups import autocorrect_group
 @app.on_message(filters.command("autocorrect"))
 async def autocorrect_bot(_, message: Message):
     if not message.reply_to_message:
-        return await message.reply_text("Reply to a text message.")
+        return await message.reply_text("message reply rawh.")
     reply = message.reply_to_message
     text = reply.text or reply.caption
     if not text:
-        return await message.reply_text("Reply to a text message.")
+        return await message.reply_text("message reply rawh.")
     data = await arq.spellcheck(text)
     if not data.ok:
-        return await message.reply_text("Something wrong happened.")
+        return await message.reply_text("Thil diklo a awm.")
     result = data.result
     await message.reply_text(result.corrected if result.corrected else "Empty")
 
@@ -30,7 +30,7 @@ IS_ENABLED = False
 async def autocorrect_ubot_toggle(_, message: Message):
     global IS_ENABLED
     if len(message.command) != 2:
-        return await message.edit("Not enough arguments.")
+        return await message.edit("Felhlel a awm tlat.")
     state = message.text.split(None, 1)[1].strip().lower()
     if state == "enable":
         IS_ENABLED = True
