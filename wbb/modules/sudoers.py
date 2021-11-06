@@ -40,21 +40,21 @@ from wbb.utils.functions import extract_user, extract_user_and_reason, restart
 
 __MODULE__ = "Sudoers"
 __HELP__ = """
-➤/stats - To Check System Status.
+➤/stats - System Status check na.
 
-➤/gstats - To Check Bot's Global Stats.
+➤/gstats - Bot's Global Stats check na.
 
-➤/gban - To Ban A User Globally.
+➤/gban - Mi ban na.
 
-➤/clean_db - Clean database.
+➤/clean_db - Database thenfai na.
 
-➤/broadcast - To Broadcast A Message To All Groups.
+➤/broadcast - Bot awmna Group zawng zawng ah a ruala thu post na.
 
-➤/update - To Update And Restart The Bot
+➤/update - Bot Update leh Restart na
 
-➤/eval - Execute Python Code
+➤/eval - Python Code tawh tir na
 
-➤/sh - Execute Shell Code
+➤/sh - Shell Code thawh tir na
 """
 
 # Stats Module
@@ -69,11 +69,11 @@ async def bot_sys_stats():
     stats = f"""
 {USERBOT_USERNAME}@Lynn
 ------------------
-UPTIME: {formatter.get_readable_time((bot_uptime))}
-BOT: {round(process.memory_info()[0] / 1024 ** 2)} MB
-CPU: {cpu}%
-RAM: {mem}%
-DISK: {disk}%
+**UPTIME**: {formatter.get_readable_time((bot_uptime))}
+**BOT**: {round(process.memory_info()[0] / 1024 ** 2)} MB
+**CPU**: {cpu}%
+**RAM**: {mem}%
+**DISK**: {disk}%
 """
     return stats
 
@@ -89,9 +89,9 @@ async def ban_globally(_, message):
     from_user = message.from_user
 
     if not user_id:
-        return await message.reply_text("I can't find that user.")
+        return await message.reply_text("I mi duh hi ka hmu zo lo.")
     if not reason:
-        return await message.reply("No reason provided.")
+        return await message.reply("Chhan engmah a awmlo.")
 
     if user_id in ([from_user.id, BOT_ID] + SUDOERS):
         return await message.reply_text("No")
@@ -115,8 +115,8 @@ async def ban_globally(_, message):
     try:
         await app.send_message(
             user.id,
-            f"Hello, You have been globally banned by {from_user.mention},"
-            + " You can appeal for this ban by talking to him.",
+            f"Hello, globally banned i ni a,ban tu che chu {from_user.mention} ani,"
+            + " Ban hi i duhloh chuan va bia in in sawifiah rawh.",
         )
     except Exception:
         pass
@@ -153,7 +153,7 @@ __**New Global Ban**__
 async def unban_globally(_, message):
     user_id = await extract_user(message)
     if not user_id:
-        return await message.reply_text("I can't find that user.")
+        return await message.reply_text("I mi duh hi ka hmu zo lo.")
     user = await app.get_users(user_id)
 
     is_gbanned = await is_gbanned_user(user.id)
