@@ -32,11 +32,11 @@ from wbb.core.decorators.errors import capture_err
 
 __MODULE__ = "Quotly"
 __HELP__ = """
-➤/q - To quote a message.
-➤/q [INTEGER] - To quote more than 1 messages.
-➤/q r - to quote a message with it's reply
+➤/q - Message quote na.
+➤/q [number] - Messages 1 aia tam qoute na.
+➤/q r - Reply a message qoute na.
 
-Use .q to quote using userbot
+.q hi chu userbot bik tan a hman tur
 """
 
 
@@ -71,10 +71,10 @@ def isArgInt(message: Message) -> list:
 @capture_err
 async def quotly_func(client, message: Message):
     if not message.reply_to_message:
-        return await message.reply_text("Reply to a message to quote it.")
+        return await message.reply_text("Qoute tur chuan Message reply rawh.")
     if not message.reply_to_message.text:
         return await message.reply_text(
-            "Replied message has no text, can't quote it."
+            "I message reply hian text a neilo a, ka qoute theilo."
         )
     m = await message.reply_text("Quoting Messages")
     if len(message.command) < 2:
@@ -84,7 +84,7 @@ async def quotly_func(client, message: Message):
         arg = isArgInt(message)
         if arg[0]:
             if arg[1] < 2 or arg[1] > 10:
-                return await m.edit("Argument must be between 2-10.")
+                return await m.edit("message hi 2-10 inkar anih angai.")
 
             count = arg[1]
 
@@ -116,11 +116,11 @@ async def quotly_func(client, message: Message):
             messages = [reply_message]
     else:
         return await m.edit(
-            "Incorrect argument, check quotly module in help section."
+            "I ti dik leh tawho, check chiang leh deuh teh."
         )
     try:
         if not message:
-            return await m.edit("Something went wrong.")
+            return await m.edit("A Dik leh tawhlo.")
 
         sticker = await quotify(messages)
         if not sticker[0]:
@@ -132,10 +132,10 @@ async def quotly_func(client, message: Message):
         sticker.close()
     except Exception as e:
         await m.edit(
-            "Something went wrong while quoting messages,"
-            + " This error usually happens when there's a "
-            + " message containing something other than text,"
-            + " or one of the messages in-between are deleted."
+            "Thil tihsual palh i nei tlat,"
+            + " i message kha en la thildang "
+            + " hawrawp ni lo a lo awm reng emaw,"
+            + " tihsual palh hrim hrim i nei pawh ani maithei."
         )
         e = format_exc()
         print(e)
