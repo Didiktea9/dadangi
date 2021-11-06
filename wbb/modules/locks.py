@@ -33,14 +33,14 @@ from wbb.utils.functions import get_urls_from_text
 
 __MODULE__ = "Locks"
 __HELP__ = """
-Commands: /lock | /unlock | /locks [No Parameters Required]
+Commands: /lock | /unlock | /locks [A hnuai a parameters te khu a theih vek]
 
 Parameters:
     messages | stickers | gifs | media | games | polls
 
     inline  | url | group_info | user_add | pin
 
-You can only pass the "all" parameter with /lock, not with /unlock
+/lock tih i hman hi chuan a chung ami Parameters te khi a theih vek, /unlock hi chuan a theihloh
 
 Example:
     ➤/lock all
@@ -68,11 +68,11 @@ data = {
 async def tg_lock(message, permissions: list, perm: str, lock: bool):
     if lock:
         if perm not in permissions:
-            return await message.reply_text("Already locked.")
+            return await message.reply_text("locked ani tawh.")
         permissions.remove(perm)
     else:
         if perm in permissions:
-            return await message.reply_text("Already Unlocked.")
+            return await message.reply_text("Unlocked ani tawh.")
         permissions.append(perm)
 
     permissions = {perm: True for perm in list(set(permissions))}
@@ -166,6 +166,6 @@ async def url_detector(_, message):
                 await message.delete()
             except Exception:
                 await message.reply_text(
-                    "This message contains a URL, "
-                    + "but i don't have enough permissions to delete it"
+                    "He thu ah hian URL a awm a, "
+                    + "delete turin thuneihna ka neilo"
                 )
