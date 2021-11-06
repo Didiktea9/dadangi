@@ -48,16 +48,16 @@ __HELP__ = """
 ➤/warns - Warning mek te en na.
 ➤/kick - Group atang mi pet chhuah na.
 ➤/dkick - Message thawn tu pet chhuah na,a message bo nghal bawk ang.
-➤/purge - A rual message clear na.
+➤/purge - A rual A message clear na.
 ➤/del - Message i reply te delete na.
 ➤/promote - Member Promote na.
 ➤/fullpromote - Engkim ti thei tur a member promote na.
 ➤/demote - Member demote na.
-➤/pin - Message pin na.
+➤/pin - Message pin na (i pin duh message kha replytur).
 ➤/mute - Member mute na.
 ➤/tmute - Hun tiam chhung awm a mute na.
 ➤/unmute - Member mute tawh unmute na.
-➤/ban_ghosts - account delete tawh thenfaina.
+➤/ban_ghosts - Group members Account delete tawh thenfaina.
 ➤/report | @admins | @admin - Admin hnen a message report na."""
 
 
