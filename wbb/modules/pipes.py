@@ -36,12 +36,8 @@ __HELP__ = """
 He module hi  gruop/channel atang a adang a forward na ani.
 
 
-➤/activate_pipe [group id] [group dang id] [BOT|USERBOT]
-
-    Active a pipe.
-
-    'BOT' emaw 'USERBOT' emaw zawk zawk i hmang thei a,
-    pakhat zawk zawk khian group
+➤/activate_pipe [group id] [group dang id] [BOT|USERBOT] : Pipe activate na.
+    'BOT' emaw 'USERBOT' emaw zawk zawk i hmang thei a,pakhat zawk zawk khian group
     message te a va thur chhuak ang.
 
 
