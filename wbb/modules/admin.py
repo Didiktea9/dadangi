@@ -36,7 +36,9 @@ from wbb.utils.functions import (extract_user, extract_user_and_reason,
 
 __MODULE__ = "Admin"
 __HELP__ = """
-➤/ban - Midang ban na (admin te chauh in an hmang thei).
+**HE MODULE HI CHU ADMIN TAN BIK CHIAH A WORK**
+
+➤/ban - Midang ban na.
 ➤/dban - Message thawn thu ban na,a message thawn a bo nghal bawk ang.
 ➤/tban - Hun bithliah awm a mi ban na.
 ➤/unban - Mi i ban tawh te sut na.
