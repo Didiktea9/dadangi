@@ -40,9 +40,9 @@ from wbb.utils.pastebin import paste
 
 __MODULE__ = "Music"
 __HELP__ = """
-➤/ytmusic [link] To Download Music From Websites Including Youtube. [SUDOERS]
-➤/song [song name] To Download Music.
-➤/lyrics [song name] To get Lyrics of a Song.
+➤/ytmusic [link] Youtube leh website atang a hla download na. [SUDOERS]
+➤/song [Hla hming] Hla Download na.
+➤/lyrics [Hla hming] Hla lyrics en na.
 """
 
 is_downloading = False
@@ -92,11 +92,11 @@ def download_youtube_audio(url: str):
 async def music(_, message):
     global is_downloading
     if len(message.command) != 2:
-        return await message.reply_text("/ytmusic needs a link as argument")
+        return await message.reply_text("/ytmusic command hi chu link thawn tel a ngai")
     url = message.text.split(None, 1)[1]
     if is_downloading:
         return await message.reply_text(
-            "Another download is in progress, try again after sometime."
+            "Download lai mek a awm a,nakin deuh ah ilo ti leh dawn nia ."
         )
     is_downloading = True
     m = await message.reply_text(
@@ -108,7 +108,7 @@ async def music(_, message):
             None, partial(download_youtube_audio, url)
         )
         if not music:
-            await m.edit("Too Long, Can't Download.")
+            await m.edit("A thui lutuk, Ka Download thei tlat lo.")
         (
             title,
             performer,
@@ -149,10 +149,10 @@ async def download_song(url):
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        return await message.reply_text("/saavn requires an argument.")
+        return await message.reply_text("/song command tur chuan hla hming ziah tel angai.")
     if is_downloading:
         return await message.reply_text(
-            "Another download is in progress, try again after sometime."
+            "Download mek a awm a, nakin deuh ah ilo ti leh dawn nia."
         )
     is_downloading = True
     text = message.text.split(None, 1)[1]
