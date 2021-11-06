@@ -38,7 +38,7 @@ from wbb.utils.filter_groups import flood_group
 
 __MODULE__ = "Flood"
 __HELP__ = """
-**Anti-Flood system, mi in a zawnin message 10 aia tam an thawn chuan datkar khat chhung mute an ni ang (Hei hian admin te a huamlo thung)**.
+**Group a nawi ching deuh hremna ani a,mi in a zawnin message 10 aia tam an thawn chuan darkar khat chhung mute an ni ang (Hei hian admin te a huamlo thung)**.
 
 ➤/flood [ENABLE|DISABLE] - Flood mode on leh off na
 """
