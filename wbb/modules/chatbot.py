@@ -35,8 +35,8 @@ __MODULE__ = "ChatBot"
 __HELP__ = """
 ➤/chatbot [ENABLE|DISABLE] Chatbot on na leh off na.
 
-Chatbot i on chuan Bot hi i titi pui thei ang
-mahse English chiahin a biak theih thung."""
+Chatbot i on chuan Bot hi Group ah i titi pui thei ang
+mahse English chiahin a biak theih thung.Private ah a work lo thung."""
 
 active_chats_bot = []
 active_chats_ubot = []
