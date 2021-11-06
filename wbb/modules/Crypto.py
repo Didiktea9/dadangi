@@ -9,7 +9,7 @@ from wbb.utils.http import get
 __MODULE__ = "Crypto"
 __HELP__ = """
 /crypto [currency]
-        Get Real Time value from currency given.
+        crypto currency hlut zawng hriatna.Command dawt ah hian Ram pawisa hming ziah tel tur.Example INR,USD
 """
 
 
