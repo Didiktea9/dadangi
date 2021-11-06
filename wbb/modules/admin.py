@@ -501,7 +501,7 @@ async def warn_user(_, message: Message):
         )
     if user_id in SUDOERS:
         return await message.reply_text(
-            "He mi pawimaw hi i warn duh amaw?, In ngaihtuah chiang phawt teh!"
+            "He mi pawimawh hi i warn duh amaw?, In ngaihtuah chiang phawt teh!"
         )
     if user_id in (await list_admins(chat_id)):
         return await message.reply_text(
