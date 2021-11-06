@@ -75,12 +75,12 @@ async def pmpermit_func(_, message):
 @capture_err
 async def pm_approve(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="Reply to a user's message to approve.")
+        return await eor(message, text="Approve tur chuan message i reply tel angai.")
     user_id = message.reply_to_message.from_user.id
     if await is_pmpermit_approved(user_id):
-        return await eor(message, text="User is already approved to pm")
+        return await eor(message, text="user hi approved ani tawh e")
     await approve_pmpermit(user_id)
-    await eor(message, text="User is approved to pm")
+    await eor(message, text="User hi approved ani tawh e")
 
 
 @app2.on_message(
@@ -90,10 +90,10 @@ async def pm_approve(_, message):
 )
 async def pm_disapprove(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="Reply to a user's message to approve.")
+        return await eor(message, text="Approve tur chuan message i reply tel angai.")
     user_id = message.reply_to_message.from_user.id
     if not await is_pmpermit_approved(user_id):
-        await eor(message, text="User is already disapproved to pm")
+        await eor(message, text="user hi approved ani tawh e")
         async for m in app2.iter_history(user_id, limit=6):
             if m.reply_markup:
                 try:
@@ -102,7 +102,7 @@ async def pm_disapprove(_, message):
                     pass
         return
     await disapprove_pmpermit(user_id)
-    await eor(message, text="User is disapproved to pm")
+    await eor(message, text="User hi approve ala nilo")
 
 
 @app2.on_message(
@@ -113,10 +113,10 @@ async def pm_disapprove(_, message):
 @capture_err
 async def block_user_func(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="Reply to a user's message to block.")
+        return await eor(message, text="Block tur chuan message reply tel angai.")
     user_id = message.reply_to_message.from_user.id
     # Blocking user after editing the message so that other person can get the update.
-    await eor(message, text="Successfully blocked the user")
+    await eor(message, text="Hlawhtling takin user hi block ani e")
     await app2.block_user(user_id)
 
 
@@ -127,10 +127,10 @@ async def block_user_func(_, message):
 )
 async def unblock_user_func(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="Reply to a user's message to unblock.")
+        return await eor(message, text="unblock tur chuan message reply tel angai.")
     user_id = message.reply_to_message.from_user.id
     await app2.unblock_user(user_id)
-    await eor(message, text="Successfully Unblocked the user")
+    await eor(message, text="Hlawhtling takin user hi Unblocked ani e")
 
 
 # CALLBACK QUERY HANDLER
@@ -147,18 +147,18 @@ async def pmpermit_cq(_, cq):
     )
     if data == "approve":
         if user_id != USERBOT_ID:
-            return await cq.answer("This Button Is Not For You")
+            return await cq.answer("He Button hi chu i tan ani velo")
         await approve_pmpermit(int(victim))
         return await app.edit_inline_text(
-            cq.inline_message_id, "User Has Been Approved To PM."
+            cq.inline_message_id, "User hi Approved ani e."
         )
 
     if data == "block":
         if user_id != USERBOT_ID:
-            return await cq.answer("This Button Is Not For You")
+            return await cq.answer("He Button hi chu i tan ani velo")
         await cq.answer()
         await app.edit_inline_text(
-            cq.inline_message_id, "Successfully blocked the user."
+            cq.inline_message_id, "Hlawhtling takin user hi blocked ani e."
         )
         await app2.block_user(int(victim))
         return await app2.send(
@@ -170,7 +170,7 @@ async def pmpermit_cq(_, cq):
         )
 
     if user_id == USERBOT_ID:
-        return await cq.answer("It's For The Other Person.")
+        return await cq.answer("Hei chu midang tan aw.")
 
     if data == "to_scam_you":
         async for m in app2.iter_history(user_id, limit=6):
@@ -191,5 +191,5 @@ async def pmpermit_cq(_, cq):
             return await app2.block_user(user_id)
         await app2.send_message(
             user_id,
-            "I'm busy right now, will approve you shortly, DO NOT SPAM.",
+            "Kabuai rih lawk a, hman veleh approve i ni ang, message lo thawn teuh suh.",
         )
