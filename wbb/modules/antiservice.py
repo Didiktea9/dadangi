@@ -10,7 +10,7 @@ from wbb.utils.dbfunctions import (antiservice_off, antiservice_on,
 
 __MODULE__ = "AntiService"
 __HELP__ = """
-Plugin to delete service messages in a chat!
+Service messages te in delete nghal tur a i duh chuan eneble khuan i command dawn nia!
 
 ➤/antiservice [enable|disable]
 """
@@ -29,12 +29,12 @@ async def anti_service(_, message):
     if status == "enable":
         await antiservice_on(chat_id)
         await message.reply_text(
-            "Enabled AntiService System. I will Delete Service Messages from Now on."
+            "AntiService System tih nun a ni e. Tun atang chuan Service Messages te  ka delete nghal zel tawh ang."
         )
     elif status == "disable":
         await antiservice_off(chat_id)
         await message.reply_text(
-            "Disabled AntiService System. I won't Be Deleting Service Message from Now on."
+            "AntiService System tih thih rih ani a. Tun atang chuan Service Messages te ka delete thei tawh lovang."
         )
     else:
         await message.reply_text(
