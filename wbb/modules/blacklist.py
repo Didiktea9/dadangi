@@ -38,9 +38,9 @@ from wbb.utils.filter_groups import blacklist_filters_group
 
 __MODULE__ = "Blacklist"
 __HELP__ = """
-➤blacklisted - Blacklisted Word zawng zawng en na.
-➤blacklist [Thu|Sentence] - Word emaw Sentence emaw blacklist a add na.
-➤whitelist [Thu|Sentence] - Word emaw Sentence emaw whitelist a add na.
+➤/blacklisted - Blacklisted Word zawng zawng en na.
+➤/blacklist [Thu|Sentence] - Word emaw Sentence emaw blacklist a add na.
+➤/whitelist [Thu|Sentence] - Word emaw Sentence emaw whitelist a add na.
 """
 
 
