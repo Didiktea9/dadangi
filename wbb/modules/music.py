@@ -40,7 +40,7 @@ from wbb.utils.pastebin import paste
 
 __MODULE__ = "Music"
 __HELP__ = """
-➤/ytmusic [link] Youtube leh website atang a hla download na. [SUDOERS]
+➤/ytmusic [link] Youtube leh website atang a hla download na.
 ➤/song [Hla hming] Hla Download na.
 ➤/lyrics [Hla hming] Hla lyrics en na.
 """
