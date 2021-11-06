@@ -10,21 +10,21 @@ Read the below text carefully to find out how formatting works!
 
 <u>Supported Fillings:</u>
 
-<code>{name}</code> - This will mention the user with their name.
-<code>{chat}</code> - This will fill with the current chat name.
+<code>{name}</code> - Hei hian user hming kha a mention ang.
+<code>{chat}</code> - Heihi chuan Group hming automatic in a hnawhkhat ang.
 
-NOTE: Fillings only works in greetings module.
+NOTE: Fillings hi chu greetings module ah chiah awmzia a nei.
 
 
 <u>Supported formatting:</u>
 
-<code>**Bold**</code> : Creates <b>bold</b> text.
-<code>~~strike~~</code>: Creates <strike>striked</strike> text.
-<code>__italic__</code>: Creates <i>italic</i> text.
-<code>--underline--</code>: Creates <u>underline</u> text.
-<code>`code words`</code>: Creates <code>code words</code> text.
-<code>[hyperlink](google.com)</code>: Creates <a href='https://www.google.com'>hyperlink</a> text.
-<b>Note:</b> You can use both markdown & html tags.
+<code>**Bold**</code> : <b>bold</b> a thuziah na.
+<code>~~strike~~</code>: <strike>striked</strike> a thuziah na.
+<code>__italic__</code>: <i>italic</i> italic a thuziah na.
+<code>--underline--</code>: <u>underline</u> underline a thuziah na.
+<code>`code words`</code>: <code>code words</code> siam na.
+<code>[hyperlink](google.com)</code>: hetiang <a href='https://www.google.com'>hyperlink</a> link awm a thuziah na.
+<b>Note:</b> Markdown & html tags te i hmang thei ve ve.
 
 
 <u>Button formatting:</u>
@@ -32,9 +32,9 @@ NOTE: Fillings only works in greetings module.
 -> text ~ [button text, button link]
 
 
-<u>Example:</u>
+<u>Entirna:</u>
 
-<b>example</b> <i>button with markdown</i> <code>formatting</code> ~ [button text, https://google.com]
+<b>entirna</b> <i>markdown hmang a button</i> <code>siam dan</code> ~ [button text, https://google.com]
 """
 
 
