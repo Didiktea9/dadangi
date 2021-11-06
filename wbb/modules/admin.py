@@ -36,27 +36,27 @@ from wbb.utils.functions import (extract_user, extract_user_and_reason,
 
 __MODULE__ = "Admin"
 __HELP__ = """
-➤/ban - Ban A User
-➤/dban - Delete the replied message banning its sender
-➤/tban - Ban A User For Specific Time
-➤/unban - Unban A User
-➤/warn - Warn A User
-➤/dwarn - Delete the replied message warning its sender
-➤/rmwarns - Remove All Warning of A User
-➤/warns - Show Warning Of A User
-➤/kick - Kick A User
-➤/dkick - Delete the replied message kicking its sender
-➤/purge - Purge Messages
-➤/del - Delete Replied Message
-➤/promote - Promote A Member
-➤/fullpromote - Promote A Member With All Rights
-➤/demote - Demote A Member
-➤/pin - Pin A Message
-➤/mute - Mute A User
-➤/tmute - Mute A User For Specific Time
-➤/unmute - Unmute A User
-➤/ban_ghosts - Ban Deleted Accounts
-➤/report | @admins | @admin - Report A Message To Admins."""
+➤/ban - Midang ban na (admin te chauh in an hmang thei).
+➤/dban - Message thawn thu ban na,a message thawn a bo nghal bawk ang.
+➤/tban - Hun bithliah awm a mi ban na.
+➤/unban - Mi i ban tawh te sut na.
+➤/warn - Midang warning na.
+➤/dwarn - Message thawn tu warning pek na,a message a bo nghal ang.
+➤/rmwarns - Members warning lai mek te a rual a sût na.
+➤/warns - Warning mek te en na.
+➤/kick - Group atang mi pet chhuah na.
+➤/dkick - Message thawn tu pet chhuah na,a message bo nghal bawk ang.
+➤/purge - A rual message clear na.
+➤/del - Message i reply te delete na.
+➤/promote - Member Promote na.
+➤/fullpromote - Engkim ti thei tur a member promote na.
+➤/demote - Member demote na.
+➤/pin - Message pin na.
+➤/mute - Member mute na.
+➤/tmute - Hun tiam chhung awm a mute na.
+➤/unmute - Member mute tawh unmute na.
+➤/ban_ghosts - account delete tawh thenfaina.
+➤/report | @admins | @admin - Admin hnen a message report na."""
 
 
 async def member_permissions(chat_id: int, user_id: int):
