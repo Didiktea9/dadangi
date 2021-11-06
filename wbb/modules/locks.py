@@ -68,11 +68,11 @@ data = {
 async def tg_lock(message, permissions: list, perm: str, lock: bool):
     if lock:
         if perm not in permissions:
-            return await message.reply_text("locked ani tawh.")
+            return await message.reply_text("lock ani e.")
         permissions.remove(perm)
     else:
         if perm in permissions:
-            return await message.reply_text("Unlocked ani tawh.")
+            return await message.reply_text("Unlock ani e.")
         permissions.append(perm)
 
     permissions = {perm: True for perm in list(set(permissions))}
