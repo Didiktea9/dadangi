@@ -32,8 +32,8 @@ from wbb.core.keyboard import ikb
 
 __MODULE__ = "Proxy"
 __HELP__ = (
-    "➤/proxy - Get socks5 proxy which you can"
-    + " use with telegram or other things"
+    "➤/proxy - Proxy server"
+    + " telegram emaw thil dang a i hman duhtakin"
 )
 
 proxies = []
@@ -77,7 +77,7 @@ async def proxy_func(_, message: Message):
 **Proxy:** {proxy}
 **Location**: {location}
 
-**POWERED BY [Mizo Android Users](http://t.me/puituflynn)**""",
+**POWERED BY [LYNN](http://t.me/DikaMs_bot)**""",
         reply_markup=keyb,
         disable_web_page_preview=True,
     )
@@ -102,7 +102,7 @@ async def proxy_callback_func(_, cq: CallbackQuery):
 **Proxy:** {proxy}
 **Location**: {location}
 
-**POWERED BY [Mizo Android Users](http://t.me/puituflynn)**""",
+**POWERED BY [LYNN](http://t.me/DikaMs_bot)**""",
         reply_markup=keyb,
         disable_web_page_preview=True,
     )
