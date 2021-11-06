@@ -37,55 +37,55 @@ from wbb.utils.pastebin import paste
 __MODULE__ = "Lynn"
 __HELP__ = """
 ➤/Lynn
-    Ask a question
+    zawhna zawt rawh. Entirna Lynn what is love
 
 ➤/commit
-    Generate Funny Commit Messages
+    Fiamthu tih chhuahna command
 
 ➤/runs
-    Idk Test Yourself
+    Han test tawp teh nangmah khan
 
 ➤/id
-    Get Chat_ID or User_ID
+    Group id leh mimal id en na
 
 ➤/random [Length]
-    Generate Random Complex Passwords
+    Password tur enchhinna
 
 ➤/cheat [Language] [Query]
-    Get Programming Related Help
+    Programming language en na
 
 ➤/tr [LANGUAGE_CODE]
-    Translate A Message
+    Message translate na
     Ex: /tr en
 
 ➤/json [URL]
     Get parsed JSON response from a rest API.
 
 ➤/arq
-    Statistics Of ARQ API.
+    ARQ API stats en na.
 
 ➤/webss [URL]
-    Take A Screenshot Of A Webpage
+    Webpage screenshot na
 
 ➤/reverse
-    Reverse search an image.
+    Thlalak zawn na.
 
 ➤/carbon
-    Make Carbon from code.
+    code atang a carbon siamna.
 
 ➤/tts
-    Convert Text To Speech.
+    Text To Speech a convert na.
 
 ➤/autocorrect [Reply to a message]
-    Autocorrects the text in replied message.
+    Message type diklo te automatic a amah a tihdikna.
 
-➤/pdf [Reply to an image (as document) or a group of images.]
-    Convert images to PDF, helpful for online classes.
+➤/pdf [Document emaw Group thlalak emaw reply tur.]
+    Thlalak te PDF a convert na, online classes kal tan a tangkai khawp mai.
 
 ➤/markdownhelp
-    Sends mark down and formatting help.
+    Markdown leh format chungchang hriatna.
 
-#RTFM - Tell noobs to read the manual
+#RTFM - Mawl Fal ho zilhhau na
 """
 
 ASQ_LOCK = Lock()
@@ -102,7 +102,7 @@ async def asq(_, message):
         if len(message.command) < 2:
             return await message.reply(err)
         question = message.text.split(None, 1)[1]
-    m = await message.reply("Thinking...")
+    m = await message.reply("Ngaihtuah mek...")
     async with ASQ_LOCK:
         resp = await arq.asq(question)
         await m.edit(resp.result)
@@ -119,7 +119,7 @@ async def rtfm(_, message):
     if not message.reply_to_message:
         return await message.reply_text("Reply To A Message lol")
     await message.reply_to_message.reply_text(
-        "Are You Lost? READ THE FUCKING DOCS!"
+        "Chhawkung Document te chhiar ve thin tur!"
     )
 
 
@@ -187,7 +187,7 @@ async def random(_, message):
             await message.reply_text("Specify A Length Between 1-1000")
     except ValueError:
         await message.reply_text(
-            "Strings Won't Work!, Pass A Positive Integer Less Than 1000"
+            "A work lo ang!, 1000 aia tlem si integers dah rawh"
         )
 
 
@@ -201,14 +201,14 @@ async def tr(_, message):
     if not message.reply_to_message or not lang:
         return await message.reply_text(
             "Reply to a message with /tr [language code]"
-            + "\nGet supported language list from here -"
+            + "\nTawng a support te ta tang hian en rawh -"
             + " https://py-googletrans.readthedocs.io/en"
             + "/latest/#googletrans-languages"
         )
     reply = message.reply_to_message
     text = reply.text or reply.caption
     if not text:
-        return await message.reply_text("Reply to a text to translate it")
+        return await message.reply_text("Thuziak reply rawh")
     result = await arq.translate(text, lang)
     if not result.ok:
         return await message.reply_text(result.result)
@@ -241,9 +241,9 @@ async def json_fetch(_, message):
 @capture_err
 async def take_ss(_, message):
     if len(message.command) != 2:
-        return await message.reply_text("Give A Url To Fetch Screenshot.")
+        return await message.reply_text("Screenshot tur chuan URL dah tel angai.")
     url = message.text.split(None, 1)[1]
-    m = await message.reply_text("**Uploading**")
+    m = await message.reply_text("**Upload mek...**")
     try:
         await app.send_photo(
             message.chat.id,
@@ -257,5 +257,5 @@ async def take_ss(_, message):
 @app.on_message(filters.command(["kickme", "banme"]))
 async def kickbanme(_, message):
     await message.reply_text(
-        "Haha, it doesn't work that way, You're stuck with everyone here."
+        "Haha, tiang kha chuan a work lo ang, i bo vel vek ani maw."
     )
