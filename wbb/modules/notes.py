@@ -34,15 +34,15 @@ from wbb.utils.dbfunctions import (delete_note, get_note, get_note_names,
 from wbb.utils.functions import extract_text_and_keyb
 
 __MODULE__ = "Notes"
-__HELP__ = """➤/notes To Get All The Notes In The Chat.
+__HELP__ = """➤/notes Group a notes save lai mek te en na.
 
-➤/save [NOTE_NAME] To Save A Note (Can be a sticker or text).
+➤/save [note hming] note save na (sticker leh thuziak pangngai pawh a theih ve ve).
 
 #NOTE_NAME To Get A Note.
 
-➤/delete [NOTE_NAME] To Delete A Note.
+➤/delete [note hming] Note save tawh Delete na.
 
-Checkout /markdownhelp to know more about formattings and other syntax.
+/markdownhelp tih hi thawn tawp la format hman tur i hre thei ang
 """
 
 
@@ -55,7 +55,7 @@ async def save_notee(_, message):
     if len(message.command) < 2 or not message.reply_to_message:
         await eor(
             message,
-            text="**Usage:**\nReply to a text or sticker with /save [NOTE_NAME] to save it.",
+            text="**Usage:**\nText emaw sticker emaw /save [note hming] ti in reply rawh.",
         )
 
     elif (
@@ -64,12 +64,12 @@ async def save_notee(_, message):
     ):
         await eor(
             message,
-            text="__**You can only save text or stickers in notes.**__",
+            text="__**Text emaw stickers notes a save tur chuan reply a /save tih a command angai.**__",
         )
     else:
         name = message.text.split(None, 1)[1].strip()
         if not name:
-            return await eor(message, text="**Usage**\n__/save [NOTE_NAME]__")
+            return await eor(message, text="**Usage**\n__/save [note hming]__")
         _type = "text" if message.reply_to_message.text else "sticker"
         note = {
             "type": _type,
@@ -96,7 +96,7 @@ async def get_notes(_, message):
     _notes = await get_note_names(chat_id)
 
     if not _notes:
-        return await eor(message, text="**No notes in this chat.**")
+        return await eor(message, text="**He group ah hian notes save lai a awm rihlo.**")
     _notes.sort()
     msg = f"List of notes in {'USERBOT' if is_ubot else message.chat.title}\n"
     for note in _notes:
@@ -162,10 +162,10 @@ async def get_one_note(_, message):
 @adminsOnly("can_change_info")
 async def del_note(_, message):
     if len(message.command) < 2:
-        return await eor(message, text="**Usage**\n__/delete [NOTE_NAME]__")
+        return await eor(message, text="**Usage**\n__/delete [note hming]__")
     name = message.text.split(None, 1)[1].strip()
     if not name:
-        return await eor(message, text="**Usage**\n__/delete [NOTE_NAME]__")
+        return await eor(message, text="**Usage**\n__/delete [note hming]__")
 
     prefix = message.text.split()[0][0]
     is_ubot = bool(prefix == USERBOT_PREFIX)
@@ -173,6 +173,6 @@ async def del_note(_, message):
 
     deleted = await delete_note(chat_id, name)
     if deleted:
-        await eor(message, text=f"**Deleted note {name} successfully.**")
+        await eor(message, text=f"**Hlawhtling takin note {name} delete ani.**")
     else:
-        await eor(message, text="**No such note.**")
+        await eor(message, text="**notes save lai a awmlo.**")
