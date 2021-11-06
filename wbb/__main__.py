@@ -296,8 +296,8 @@ I group enkawl tu atan min hmang thei ang.
     if mod_match:
         module = mod_match.group(1)
         text = (
-            "{} **{}**:\n".format(
-                "**『Help for』**", HELPABLE[module].__MODULE__
+            "{} **{}**』:\n".format(
+                "**『Help for**", HELPABLE[module].__MODULE__
             )
             + HELPABLE[module].__HELP__
         )
