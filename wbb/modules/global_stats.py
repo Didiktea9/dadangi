@@ -46,7 +46,7 @@ from wbb.utils.inlinefuncs import keywords_list
 async def clean_db(_, message):
     served_chats = [int(i["chat_id"]) for i in (await get_served_chats())]
     m = await message.reply(
-        f"__**Cleaning database, Might take around {len(served_chats)*2} seconds.**__",
+        f"__**Database thenfai mek ani a, heihian {len(served_chats)*2} seconds vel a awh ang.**__",
     )
     for served_chat in served_chats:
         try:
@@ -68,7 +68,7 @@ async def clean_db(_, message):
 async def global_stats(_, message):
     m = await app.send_message(
         message.chat.id,
-        text="__**Analysing Stats...**__",
+        text="__**Stats enfiah mek ani e...**__",
         disable_web_page_preview=True,
     )
 
