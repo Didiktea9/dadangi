@@ -190,7 +190,7 @@ async def kickFunc(_, message: Message):
             "Keimah chu ka in kick theilo, i duh chuan min remove thei ang."
         )
     if user_id in SUDOERS:
-        return await message.reply_text("You Wanna Kick The Elevated One?")
+        return await message.reply_text("He mi pawimawh lutuk hi i kick duh amw?")
     if user_id in (await list_admins(message.chat.id)):
         return await message.reply_text(
             "Admin chu ka kick theilo."
@@ -508,7 +508,7 @@ async def warn_user(_, message: Message):
             "Admin ka warn theilo."
         )
     if user_id not in (await list_members(chat_id)):
-        return await message.reply_text("This user isn't here.")
+        return await message.reply_text("I hrem duh hi Group ah hian a awm tawh lo.")
     user, warns = await asyncio.gather(
         app.get_users(user_id),
         get_warn(chat_id, await int_to_alpha(user_id)),
