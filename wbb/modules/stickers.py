@@ -42,11 +42,11 @@ from wbb.utils.stickerset import (add_sticker_to_set, create_sticker,
 __MODULE__ = "Stickers"
 __HELP__ = """
 ➤/sticker_id
-    To get FileID of a Sticker.
+    Sticker id hriatna.
 ➤/get_sticker
-    To get sticker as a photo and document.
+    Sticker kha thlalak leh document a lak chhuahna.
 ➤/kang
-    To kang a Sticker or an Image."""
+    Sticker in emoji a a milpui hratna."""
 
 MAX_STICKERS = (
     120  # would be better if we could fetch this limit directly from telegram
@@ -60,10 +60,10 @@ async def sticker_id(_, message: Message):
     reply = message.reply_to_message
 
     if not reply:
-        return await message.reply("Reply to a sticker.")
+        return await message.reply("Sticker reply rawh.")
 
     if not reply.sticker:
-        return await message.reply("Reply to a sticker.")
+        return await message.reply("Sticker reply rawh.")
 
     await message.reply_text(f"`{reply.sticker.file_id}`")
 
@@ -74,10 +74,10 @@ async def sticker_image(_, message: Message):
     r = message.reply_to_message
 
     if not r:
-        return await message.reply("Reply to a sticker.")
+        return await message.reply("Sticker reply rawh.")
 
     if not r.sticker:
-        return await message.reply("Reply to a sticker.")
+        return await message.reply("Sticker reply rawh.")
 
     m = await message.reply("Sending..")
     f = await r.download(f"{r.sticker.file_unique_id}.png")
@@ -100,7 +100,7 @@ async def userbot_kang(_, message: Message):
     reply = message.reply_to_message
 
     if not reply:
-        return await message.reply_text("Reply to a sticker/image to kang it.")
+        return await message.reply_text("Sticker emaw thlalak emaw reply rawh.")
 
     sticker_m = await reply.forward(BOT_USERNAME)
 
@@ -129,7 +129,7 @@ async def userbot_kang(_, message: Message):
 @capture_err
 async def kang(client, message: Message):
     if not message.reply_to_message:
-        return await message.reply_text("Reply to a sticker/image to kang it.")
+        return await message.reply_text("Sticker emaw thlalak emaw reply rawh.")
     if not message.from_user:
         return await message.reply_text(
             "You are anon admin, kang stickers in my pm."
@@ -173,7 +173,7 @@ async def kang(client, message: Message):
                     temp_file_path
                 )
             except OSError as e:
-                await msg.edit_text("Something wrong happened.")
+                await msg.edit_text("Tih dikloh i nei tlat mai.")
                 raise Exception(
                     f"Something went wrong while resizing the sticker (at {temp_file_path}); {e}"
                 )
@@ -244,12 +244,12 @@ async def kang(client, message: Message):
             [[InlineKeyboardButton(text="Start", url=f"t.me/{BOT_USERNAME}")]]
         )
         await msg.edit(
-            "You Need To Start A Private Chat With Me.",
+            "Private ah minlo be rawh.",
             reply_markup=keyboard,
         )
     except StickerPngNopng:
         await message.reply_text(
-            "Stickers must be png files but the provided image was not a png"
+            "Stickers hi png files a nih angai"
         )
     except StickerPngDimensions:
-        await message.reply_text("The sticker png dimensions are invalid.")
+        await message.reply_text("Sticker png lenzawng hi a dik tawklo.")
