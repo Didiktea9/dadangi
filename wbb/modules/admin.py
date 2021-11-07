@@ -39,9 +39,9 @@ __HELP__ = """
 **HE MODULE HI CHU ADMIN TAN BIK CHIAH A WORK**
 
 ➤/ban - Midang ban na.
-➤/dban - Message thawn thu ban na,a message thawn a bo nghal bawk ang.
+➤/dban - Message thawn tu ban na,a message thawn a bo nghal bawk ang.
 ➤/tban - Hun bithliah awm a mi ban na.
-➤/unban - Mi i ban tawh te sut na.
+➤/unban - Mi i ban tawh te sût na.
 ➤/warn - Midang warning na.
 ➤/dwarn - Message thawn tu warning pek na,a message a bo nghal ang.
 ➤/rmwarns - Members warning lai mek te a rual a sût na.
@@ -49,14 +49,14 @@ __HELP__ = """
 ➤/kick - Group atang mi pet chhuah na.
 ➤/dkick - Message thawn tu pet chhuah na,a message bo nghal bawk ang.
 ➤/purge - A rual A message clear na.
-➤/del - Message i reply te delete na.
+➤/del - Message delete na,i delete duh message kha reply a command tur..
 ➤/promote - Member Promote na.
 ➤/fullpromote - Engkim ti thei tur a member promote na.
 ➤/demote - Member demote na.
-➤/pin - Message pin na (i pin duh message kha replytur).
+➤/pin - Message pin na (i pin duh message kha reply tur).
 ➤/mute - Member mute na.
 ➤/tmute - Hun tiam chhung awm a mute na.
-➤/unmute - Member mute tawh unmute na.
+➤/unmute - Member mute lai mek unmute na.
 ➤/ban_ghosts - Group members Account delete tawh thenfaina.
 ➤/report | @admins | @admin - Admin hnen a message report na."""
 
