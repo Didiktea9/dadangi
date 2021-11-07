@@ -199,9 +199,9 @@ async def kickFunc(_, message: Message):
         )
     mention = (await app.get_users(user_id)).mention
     msg = f"""
-**Kicked User:** {mention}
-**Kicked By:** {message.from_user.mention if message.from_user else 'Anon'}
-**Reason:** {reason or 'No Reason Provided.'}"""
+**Kick Hming:** {mention}
+**Kick Tu:** {message.from_user.mention if message.from_user else 'Anon'}
+**Kick Chhan:** {reason or 'No Reason Provided.'}"""
     if message.command[0][0] == "d":
         await message.reply_to_message.delete()
     await message.chat.kick_member(user_id)
@@ -237,8 +237,8 @@ async def banFunc(_, message: Message):
         )
     mention = (await app.get_users(user_id)).mention
     msg = (
-        f"**Banned User:** {mention}\n"
-        f"**Banned By:** {message.from_user.mention if message.from_user else 'Anon'}\n"
+        f"**Ban Hming:** {mention}\n"
+        f"**Ban Tu:** {message.from_user.mention if message.from_user else 'Anon'}\n"
     )
     if message.command[0][0] == "d":
         await message.reply_to_message.delete()
@@ -247,20 +247,20 @@ async def banFunc(_, message: Message):
         time_value = split[0]
         temp_reason = split[1] if len(split) > 1 else ""
         temp_ban = await time_converter(message, time_value)
-        msg += f"**Banned For:** {time_value}\n"
+        msg += f"**Ban hun chhung:** {time_value}\n"
         if temp_reason:
-            msg += f"**Reason:** {temp_reason}"
+            msg += f"**Ban Chhan:** {temp_reason}"
         try:
             if len(time_value[:-1]) < 3:
                 await message.chat.kick_member(user_id, until_date=temp_ban)
                 await message.reply_text(msg)
             else:
-                await message.reply_text("You can't use more than 99")
+                await message.reply_text("99 aia tam a hman theihloh")
         except AttributeError:
             pass
         return
     if reason:
-        msg += f"**Reason:** {reason}"
+        msg += f"**Ban Chhan:** {reason}"
     await message.chat.kick_member(user_id)
     await message.reply_text(msg)
 
@@ -281,11 +281,11 @@ async def unbanFunc(_, message: Message):
         user = message.reply_to_message.from_user.id
     else:
         return await message.reply_text(
-            "Provide a username or reply to a user's message to unban."
+            "Unban tur chuan an mahni mention emaw,an message reply tel angai."
         )
     await message.chat.unban_member(user)
     umention = (await app.get_users(user)).mention
-    await message.reply_text(f"Unbanned! {umention}")
+    await message.reply_text(f"{umention} chu an ban na hlihsak ani ta e")
 
 
 # Delete messages
@@ -331,7 +331,7 @@ async def promoteFunc(_, message: Message):
             can_manage_chat=bot.can_manage_chat,
             can_manage_voice_chats=bot.can_manage_voice_chats,
         )
-        return await message.reply_text(f"Fully Promoted! {umention}")
+        return await message.reply_text(f"{umention} Chu fullypromote a ni e")
 
     await message.chat.promote_member(
         user_id=user_id,
@@ -344,7 +344,7 @@ async def promoteFunc(_, message: Message):
         can_manage_chat=bot.can_manage_chat,
         can_manage_voice_chats=bot.can_manage_voice_chats,
     )
-    await message.reply_text(f"Promoted! {umention}")
+    await message.reply_text(f"{umention} chu fullypromote ani e")
 
 
 # Demote Member
@@ -374,7 +374,7 @@ async def demote(_, message: Message):
         can_manage_voice_chats=False,
     )
     umention = (await app.get_users(user_id)).mention
-    await message.reply_text(f"Demoted! {umention}")
+    await message.reply_text(f"{umention} chu demote ani e")
 
 
 # Pin Messages
@@ -388,10 +388,10 @@ async def pin(_, message: Message):
     r = message.reply_to_message
     await r.pin(disable_notification=True)
     await message.reply(
-        f"**I [Thuziak]({r.link}) pin ani e.**",
+        f"**I [Thuziak]({r.link}) hi pin ani e.**",
         disable_web_page_preview=True,
     )
-    msg = "Pin message khi wn chiang rawh: ~ " + f"[Check, {r.link}]"
+    msg = "Pin message khi en chiang rawh: ~ " + f"[Check, {r.link}]"
     filter_ = dict(type="text", data=msg)
     await save_filter(message.chat.id, "~pinned", filter_)
 
@@ -420,17 +420,17 @@ async def mute(_, message: Message):
     mention = (await app.get_users(user_id)).mention
     keyboard = ikb({"🚨   Unmute   🚨": f"unmute_{user_id}"})
     msg = (
-        f"**Muted User:** {mention}\n"
-        f"**Muted By:** {message.from_user.mention if message.from_user else 'Anon'}\n"
+        f"**Mute Hming:** {mention}\n"
+        f"**Muted Tu:** {message.from_user.mention if message.from_user else 'Anon'}\n"
     )
     if message.command[0] == "tmute":
         split = reason.split(None, 1)
         time_value = split[0]
         temp_reason = split[1] if len(split) > 1 else ""
         temp_mute = await time_converter(message, time_value)
-        msg += f"**Muted For:** {time_value}\n"
+        msg += f"**Mute Hun Chhung:** {time_value}\n"
         if temp_reason:
-            msg += f"**Reason:** {temp_reason}"
+            msg += f"**Mute Chhan:** {temp_reason}"
         try:
             if len(time_value[:-1]) < 3:
                 await message.chat.restrict_member(
@@ -440,12 +440,12 @@ async def mute(_, message: Message):
                 )
                 await message.reply_text(msg, reply_markup=keyboard)
             else:
-                await message.reply_text("You can't use more than 99")
+                await message.reply_text("99 aia tam a hman theihloh")
         except AttributeError:
             pass
         return
     if reason:
-        msg += f"**Reason:** {reason}"
+        msg += f"**Mute Chhan:** {reason}"
     await message.chat.restrict_member(user_id, permissions=ChatPermissions())
     await message.reply_text(msg, reply_markup=keyboard)
 
@@ -483,9 +483,9 @@ async def ban_deleted_accounts(_, message: Message):
             except Exception:
                 pass
             banned_users += 1
-        await message.reply_text(f"Banned {banned_users} Deleted Accounts")
+        await message.reply_text(f"**{banned_users} chu account a delete tawh avangin remove ani e**")
     else:
-        await message.reply_text("Group ah hian account delete tawh a awm lo")
+        await message.reply_text("**Group ah hian account delete tawh an awm lo**")
 
 
 @app.on_message(
@@ -526,16 +526,16 @@ async def warn_user(_, message: Message):
     if warns >= 2:
         await message.chat.kick_member(user_id)
         await message.reply_text(
-            f"Number of warns of {mention} exceeded, BANNED!"
+            f"{mention} hi warning a ngaihpawimawh loh avangin BAN ani e!"
         )
         await remove_warns(chat_id, await int_to_alpha(user_id))
     else:
         warn = {"warns": warns + 1}
         msg = f"""
-**Warned User:** {mention}
-**Warned By:** {message.from_user.mention if message.from_user else 'Anon'}
-**Reason:** {reason or 'No Reason Provided.'}
-**Warns:** {warns + 1}/3"""
+**Warning Hming:** {mention}
+**Warning Tu:** {message.from_user.mention if message.from_user else 'Anon'}
+**Warning Chhan:** {reason or 'No Reason Provided.'}
+**Warning zat:** {warns + 1}/3"""
         await message.reply_text(msg, reply_markup=keyboard)
         await add_warn(chat_id, await int_to_alpha(user_id), warn)
 
@@ -562,7 +562,7 @@ async def remove_warning(_, cq: CallbackQuery):
     await add_warn(chat_id, await int_to_alpha(user_id), warn)
     text = cq.message.text.markdown
     text = f"~~{text}~~\n\n"
-    text += f"__Warn removed by {from_user.mention}__"
+    text += f"__Warning remove tu chu {from_user.mention} ani__"
     await cq.message.edit(text)
 
 
@@ -633,7 +633,7 @@ async def report_user(_, message):
         )
  
     user_mention = message.reply_to_message.from_user.mention
-    text = f"Reported {user_mention} to admins!"
+    text = f"{user_mention} hi admin te hnen ah report ani e!"
     admin_data = await app.get_chat_members(chat_id=message.chat.id,
                                             filter="administrators") # will it giv floods ?
     for admin in admin_data:
