@@ -388,10 +388,10 @@ async def pin(_, message: Message):
     r = message.reply_to_message
     await r.pin(disable_notification=True)
     await message.reply(
-        f"**Pinned [this]({r.link}) message.**",
+        f"**I [Thuziak]({r.link}) pin ani e.**",
         disable_web_page_preview=True,
     )
-    msg = "Please check the pinned message: ~ " + f"[Check, {r.link}]"
+    msg = "Pin message khi wn chiang rawh: ~ " + f"[Check, {r.link}]"
     filter_ = dict(type="text", data=msg)
     await save_filter(message.chat.id, "~pinned", filter_)
 
