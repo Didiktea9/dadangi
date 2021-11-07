@@ -76,7 +76,7 @@ __HELP__ = """
 ➤/tts
     Text To Speech a convert na.
 
-➤/autocorrect [Reply to a message]
+➤/autocorrect [message reply tel tur]
     Message type diklo te automatic a amah a tihdikna.
 
 ➤/pdf [Document emaw Group thlalak emaw reply tur.]
@@ -117,9 +117,9 @@ async def commit(_, message):
 async def rtfm(_, message):
     await message.delete()
     if not message.reply_to_message:
-        return await message.reply_text("Reply To A Message lol")
+        return await message.reply_text("Message reply tel rawh")
     await message.reply_to_message.reply_text(
-        "Chhawkung Document te chhiar ve thin tur!"
+        "A mual bo in i bo deuh tawp ani maw!"
     )
 
 
