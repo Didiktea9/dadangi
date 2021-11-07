@@ -68,7 +68,7 @@ async def clean_db(_, message):
 async def global_stats(_, message):
     m = await app.send_message(
         message.chat.id,
-        text="__**Stats enfiah mek ani e...**__",
+        text="**__Stats enfiah mek ani e...__**",
         disable_web_page_preview=True,
     )
 
@@ -131,7 +131,7 @@ async def global_stats(_, message):
             privates_ub += 1
 
     msg = f"""
-**Global Stats of {BOT_NAME}**:
+**{BOT_NAME} global stats chu**:
     **{modules_count}** Modules Loaded.
     **{len(keywords_list)}** Inline Modules Loaded.
     **{rss_count}** Active RSS Feeds.
@@ -143,7 +143,7 @@ async def global_stats(_, message):
     **{karmas_count}** Karma, Across **{karmas_chats_count}** chats.
     **{served_users}** Users, Across **{served_chats}** chats.
 
-**Global Stats of {USERBOT_NAME}**:
+**{USERBOT_NAME} global stats chu**:
     **{total_ub} Dialogs.**
     **{groups_ub} Groups Joined.**
     **{channels_ub} Channels Joined.**
