@@ -127,7 +127,7 @@ async def welcome(_, message: Message):
 
             await message.chat.restrict_member(member.id, ChatPermissions())
             text = (
-                f"**Mihring i ni ngei em {(member.mention())}** ?\n\n"
+                f"**Duhtak {(member.mention())} Mihring i ni ngei em fiah lawk ang aw** !\n\n"
                 f"**Thlalak a thil inziak hi a hnuai ami ah khuan {WELCOME_DELAY_KICK_SEC}** "
                 "**seconds (5min) chhung a i hmet hmanlo emaw vawi 4 i tidiklo anih chuan Bot in a kick ang che**."
             )
@@ -243,10 +243,10 @@ async def callback_query_welcome_button(_, callback_query):
                 keyboard = i["keyboard"]
 
     if pending_user_id != pressed_user_id:
-        return await callback_query.answer("This is not for you")
+        return await callback_query.answer("Hei hi chu i ti ve theilo")
 
     if answer != correct_answer:
-        await callback_query.answer("Yeah, It's Wrong.")
+        await callback_query.answer("Aw, a diklo.")
         for iii in answers_dicc:
             if (
                 iii["user_id"] == pending_user_id
