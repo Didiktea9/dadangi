@@ -83,10 +83,10 @@ async def tg_lock(message, permissions: list, perm: str, lock: bool):
         )
     except ChatNotModified:
         return await message.reply_text(
-            "To unlock this, you have to unlock 'messages' first."
+            "Hemi unlock tur hi chuan, 'messages' khi unlock hmasak angai."
         )
 
-    await message.reply_text(("Locked." if lock else "Unlocked."))
+    await message.reply_text(("Locked a ni." if lock else "Unlocked a ni."))
 
 
 @app.on_message(filters.command(["lock", "unlock"]) & ~filters.private)
@@ -113,7 +113,7 @@ async def locks_func(_, message):
         )
     elif parameter == "all" and state == "lock":
         await app.set_chat_permissions(chat_id, ChatPermissions())
-        await message.reply_text(f"Locked Everything in {message.chat.title}")
+        await message.reply_text(f"{message.chat.title} ah hian lock a awmlo")
 
     elif parameter == "all" and state == "unlock":
         await app.set_chat_permissions(
@@ -130,7 +130,7 @@ async def locks_func(_, message):
             can_add_web_page_previews=True
                         )
                                  )
-        await message.reply(f"Unlocked Everything in {message.chat.title}")
+        await message.reply(f"{message.chat.title} ah hian lock a awm lo.")
                   
 @app.on_message(filters.command("locks") & ~filters.private)
 @capture_err
