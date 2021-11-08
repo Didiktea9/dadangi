@@ -49,10 +49,10 @@ __MODULE__ = "Greetings"
 __HELP__ = """
 ➤/captcha [ENABLE|DISABLE] - Captcha on na leh off na.
 
-➤/set_welcome - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
+➤/setwelcome - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
 
-➤/del_welcome - Welcome message delete na.
-➤/get_welcome - Welcome message set mek en na.
+➤/delwelcome - Welcome message delete na.
+➤/getwelcome - Welcome message set mek en na.
 
 **SET_WELCOME ->**
 
@@ -61,7 +61,8 @@ __HELP__ = """
 ```
 **Hi** {name} Welcome to {chat}
 
-~ #He thil (~) hi text and button then hrangtu tur ani a, he comment ti bo tu hi ani bawk
+~ 
+     He sign (~) hi text leh button then hrangtu tur ani a,  (~) hemi sign tello hi chuan welcome i set dik theilo ang
 
 button=[Duck, https://duckduckgo.com]
 button2=[Github, https://github.com]
@@ -353,7 +354,7 @@ async def captcha_state(_, message):
 # WELCOME MESSAGE
 
 
-@app.on_message(filters.command("set_welcome") & ~filters.private)
+@app.on_message(filters.command("setwelcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def set_welcome_func(_, message):
     usage = "Thuziak reply i neih angai, Greetings module ah khan a tihdan kan sawi tawh kha"
@@ -371,7 +372,7 @@ async def set_welcome_func(_, message):
     await message.reply_text("Hlawhtling takin Welcome message set ani e.")
 
 
-@app.on_message(filters.command("del_welcome") & ~filters.private)
+@app.on_message(filters.command("delwelcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def del_welcome_func(_, message):
     chat_id = message.chat.id
@@ -379,7 +380,7 @@ async def del_welcome_func(_, message):
     await message.reply_text("Welcome message deleted ani e.")
 
 
-@app.on_message(filters.command("get_welcome") & ~filters.private)
+@app.on_message(filters.command("getwelcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def get_welcome_func(_, message):
     chat = message.chat
