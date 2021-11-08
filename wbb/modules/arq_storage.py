@@ -34,11 +34,11 @@ from wbb.utils.functions import get_file_id_from_message
 
 __MODULE__ = "Storage"
 __HELP__ = """
-100MB aia lianlo file lo thawn la
+100MB aia lian lo file lo thawn la
 download link kalo pe ang che.
 
 **Usage:**
-    ➤/upload [url|Thlalak emaw video emaw reply rawh]
+    ➤/upload [Thlalak emaw video emaw reply rawh]
 """
 
 UPLOAD_LOCK = Lock()
@@ -69,13 +69,13 @@ async def upload(m: Message, file: str = None, url: str = None):
     )
 
 
-@app.on_message(filters.command("**upload mek e...**"))
+@app.on_message(filters.command("upload"))
 @capture_err
 async def arq_upload(_, message):
     if message.reply_to_message:
         if UPLOAD_LOCK.locked():
             return await message.reply(
-                "**Upload mek a awm a, nakin deuh ah i ti leh dawn nia**"
+                "**Upload lai mek a awm a, nakin deuh ah i ti leh dawn nia**"
             )
         async with UPLOAD_LOCK:
             r = message.reply_to_message
