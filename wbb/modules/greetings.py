@@ -49,10 +49,10 @@ __MODULE__ = "Greetings"
 __HELP__ = """
 ➤/captcha [ENABLE|DISABLE] - Captcha on na leh off na.
 
-➤/setwel_come - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
+➤/set_welcome - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
 
-➤/delwel_come - Welcome message delete na.
-➤/getwel_come - Welcome message set mek en na.
+➤/del_welcome - Welcome message delete na.
+➤/get_welcome - Welcome message set mek en na.
 
 **SET_WELCOME ->**
 
