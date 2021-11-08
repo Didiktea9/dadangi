@@ -1,5 +1,5 @@
 from pyrogram import filters
-
+from wbb import app
 
 @app.on_message(filters.command("snd") & ~filters.edited)
 async def send(_, message):
