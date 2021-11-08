@@ -38,14 +38,14 @@ __HELP__ = """
 download link kalo pe ang che.
 
 **Usage:**
-    ➤/upload [url|Thlalak reply rawh]
+    ➤/upload [url|Thlalak emaw video emaw reply rawh]
 """
 
 UPLOAD_LOCK = Lock()
 
 
 async def upload(m: Message, file: str = None, url: str = None):
-    err = "**Thlalak bak he command hian a support lo tlat**"
+    err = "**Thlalak leh video bak he command hian a support lo tlat**"
     try:
         resp = await arq.upload(file=file, url=url)
     except Exception:
