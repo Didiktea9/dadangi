@@ -38,14 +38,14 @@ __HELP__ = """
 download link kalo pe ang che.
 
 **Usage:**
-    ➤/upload [url|file reply rawh]
+    ➤/upload [url|Thlalak reply rawh]
 """
 
 UPLOAD_LOCK = Lock()
 
 
 async def upload(m: Message, file: str = None, url: str = None):
-    err = "Thil diklo a awm tlat"
+    err = "**Thlalak bak he command hian a support lo tlat**"
     try:
         resp = await arq.upload(file=file, url=url)
     except Exception:
@@ -69,13 +69,13 @@ async def upload(m: Message, file: str = None, url: str = None):
     )
 
 
-@app.on_message(filters.command("upload"))
+@app.on_message(filters.command("**upload mek e...**"))
 @capture_err
 async def arq_upload(_, message):
     if message.reply_to_message:
         if UPLOAD_LOCK.locked():
             return await message.reply(
-                "Upload mek a awm a, nakin deuh ah i ti leh dawn nia"
+                "**Upload mek a awm a, nakin deuh ah i ti leh dawn nia**"
             )
         async with UPLOAD_LOCK:
             r = message.reply_to_message
@@ -84,16 +84,16 @@ async def arq_upload(_, message):
             if not file_id:
                 return await message.reply("I thil upload hi a support lo.")
 
-            m = await message.reply("Downloading...")
+            m = await message.reply("**Download mek e...**")
             file = await app.download_media(file_id)
 
-            await m.edit("Upload mek...")
+            await m.edit("**Upload mek...**")
             return await upload(m, file=file)
 
     if len(message.command) != 2:
-        return await message.reply("Diklo a awm")
+        return await message.reply("**Diklo a awm**")
 
     url = message.text.split(None, 1)[1]
 
-    m = await message.reply("Upload mek...")
+    m = await message.reply("**Upload mek...**")
     await upload(m, url=url)
