@@ -29,12 +29,12 @@ async def anti_service(_, message):
     if status == "enable":
         await antiservice_on(chat_id)
         await message.reply_text(
-            "AntiService System tih nun a ni e. Tun atang chuan Service Messages te  ka delete nghal zel tawh ang."
+            "**AntiService System tih nun a ni e. Tun atang chuan Service Messages te  ka delete nghal zel tawh ang.**"
         )
     elif status == "disable":
         await antiservice_off(chat_id)
         await message.reply_text(
-            "AntiService System tih thih rih ani a. Tun atang chuan Service Messages te ka delete thei tawh lovang."
+            "**AntiService System tih thih rih ani a. Tun atang chuan Service Messages te ka delete thei tawh lovang.**"
         )
     else:
         await message.reply_text(
