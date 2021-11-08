@@ -49,10 +49,10 @@ __MODULE__ = "Greetings"
 __HELP__ = """
 ➤/captcha [ENABLE|DISABLE] - Captcha on na leh off na.
 
-➤/set_welcome - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
+➤/setwelcome - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
 
-➤/del_welcome - Welcome message delete na.
-➤/get_welcome - Welcome message set mek en na.
+➤/delwelcome - Welcome message delete na.
+➤/getwelcome - Welcome message set mek en na.
 
 **SET_WELCOME ->**
 
@@ -129,7 +129,7 @@ async def welcome(_, message: Message):
             await message.chat.restrict_member(member.id, ChatPermissions())
             text = (
                 f"**Duhtak {(member.mention())} Mihring i ni ngei em fiah lawk ang aw** !\n\n"
-                f"**Thlalak a thil inziak hi a hnuai ami ah khuan {WELCOME_DELAY_KICK_SEC}** "
+                f"**Thlalak a thil inziak ang khi a hnuai ami ah khuan en mil la hmet rawh le {WELCOME_DELAY_KICK_SEC}** "
                 "**seconds (5min) chhung a i hmet hmanlo emaw vawi 4 i tidiklo anih chuan Bot in a kick ang che**."
             )
         except ChatAdminRequired:
@@ -354,7 +354,7 @@ async def captcha_state(_, message):
 # WELCOME MESSAGE
 
 
-@app.on_message(filters.command("set_welcome") & ~filters.private)
+@app.on_message(filters.command("setwelcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def set_welcome_func(_, message):
     usage = "**Text reply angai, Greeting modules ah a tihdan kan sawi tawh kha.**"
@@ -372,7 +372,7 @@ async def set_welcome_func(_, message):
     await message.reply_text("**Hlawhtling takin Welcome message set ani e.**")
 
 
-@app.on_message(filters.command("del_welcome") & ~filters.private)
+@app.on_message(filters.command("delwelcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def del_welcome_func(_, message):
     chat_id = message.chat.id
@@ -380,7 +380,7 @@ async def del_welcome_func(_, message):
     await message.reply_text("**Welcome message delete ani e.**")
 
 
-@app.on_message(filters.command("get_welcome") & ~filters.private)
+@app.on_message(filters.command("getwelcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def get_welcome_func(_, message):
     chat = message.chat
