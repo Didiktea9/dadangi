@@ -49,10 +49,10 @@ __MODULE__ = "Greetings"
 __HELP__ = """
 ➤/captcha [ENABLE|DISABLE] - Captcha on na leh off na.
 
-➤/setwelcome - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
+➤/setwel_come - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
 
-➤/delwelcome - Welcome message delete na.
-➤/getwelcome - Welcome message set mek en na.
+➤/delwel_come - Welcome message delete na.
+➤/getwel_come - Welcome message set mek en na.
 
 **SET_WELCOME ->**
 
@@ -354,9 +354,11 @@ async def captcha_state(_, message):
 # WELCOME MESSAGE
 
 
-@app.on_message(filters.command("setwelcome") & ~filters.private)
+@app.on_message(filters.command("set_welcome") & ~filters.private)
 @adminsOnly("can_change_info")
-async def set_welcome_func(_, message):
+async def set_welcome_func(_, Chibai le {name},  {chat} ah hian kanlo lawm a che.
+  He Group hi Lynn Bot hmang tu ten harsatna an neih te sawina tur hmun ani a. Lynn Bot chungchang nilo chu sawi kan phal lutuk lo tih i hre dawn nia.
+~):
     usage = "Thuziak reply i neih angai, Greetings module ah khan a tihdan kan sawi tawh kha"
     if not message.reply_to_message:
         await message.reply_text(usage)
@@ -372,7 +374,7 @@ async def set_welcome_func(_, message):
     await message.reply_text("**Hlawhtling takin Welcome message set ani e.**")
 
 
-@app.on_message(filters.command("delwelcome") & ~filters.private)
+@app.on_message(filters.command("del_welcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def del_welcome_func(_, message):
     chat_id = message.chat.id
@@ -380,7 +382,7 @@ async def del_welcome_func(_, message):
     await message.reply_text("**Welcome message deleted ani e.**")
 
 
-@app.on_message(filters.command("getwelcome") & ~filters.private)
+@app.on_message(filters.command("get_welcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def get_welcome_func(_, message):
     chat = message.chat
