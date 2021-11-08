@@ -38,7 +38,8 @@ __HELP__ = """➤/notes Group a notes save lai mek te en na.
 
 ➤/save [note hming] note save na (sticker leh thuziak pangngai pawh a theih ve ve).
 
-#NOTE_NAME To Get A Note.
+#Note i koh chhuah duh chuan /notes tih post a lo lang ami kha hashtag hmangin i kochhuak thei ang.
+Entirnan: note ah khan clear tih alo awm a a kohchhuah dan chu #clear i ti ang.
 
 ➤/delete [note hming] Note save tawh Delete na.
 
