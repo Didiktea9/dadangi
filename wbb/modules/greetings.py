@@ -369,7 +369,7 @@ async def set_welcome_func(_, message):
     if not (extract_text_and_keyb(ikb, raw_text)):
         return await message.reply_text("Format diklo i hmang, Chhiar chiang hram rawh.")
     await set_welcome(chat_id, raw_text)
-    await message.reply_text("Hlawhtling takin Welcome message set ani e.")
+    await message.reply_text("**Hlawhtling takin Welcome message set ani e.**")
 
 
 @app.on_message(filters.command("delwelcome") & ~filters.private)
@@ -377,7 +377,7 @@ async def set_welcome_func(_, message):
 async def del_welcome_func(_, message):
     chat_id = message.chat.id
     await del_welcome(chat_id)
-    await message.reply_text("Welcome message deleted ani e.")
+    await message.reply_text("**Welcome message deleted ani e.**")
 
 
 @app.on_message(filters.command("getwelcome") & ~filters.private)
@@ -386,7 +386,7 @@ async def get_welcome_func(_, message):
     chat = message.chat
     welcome = await get_welcome(chat.id)
     if not welcome:
-        return await message.reply_text("Welcome message set a la nilo.")
+        return await message.reply_text("**Group ah hian Welcome message set a la nilo.**")
     if not message.from_user:
         return await message.reply_text(
             "Bengtulul, welcome message a en theihloh."
