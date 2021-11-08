@@ -343,10 +343,10 @@ async def captcha_state(_, message):
     state = state.lower()
     if state == "enable":
         await captcha_on(chat_id)
-        await message.reply_text("Members thar tan Captcha on na.")
+        await message.reply_text("**Members thar tan Captcha on a ni e.**")
     elif state == "disable":
         await captcha_off(chat_id)
-        await message.reply_text("Members thar tan Captcha off na.")
+        await message.reply_text("**Members thar tan Captcha off ani e.**")
     else:
         await message.reply_text(usage)
 
