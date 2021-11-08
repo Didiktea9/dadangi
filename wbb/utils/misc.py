@@ -77,23 +77,10 @@ def paginate_modules(page_n, module_dict, prefix, chat=None):
             (
                 modules[-2],
                 modules[-1],
-
-     if len(pairs) > COLUMN_SIZE:
-        pairs = pairs[
-            modulo_page * COLUMN_SIZE : COLUMN_SIZE * (modulo_page + 1)
-        ] + [
-            (
-               EqInlineKeyboardButton(
-                    "Back",
-                    callback_data="{}_home({})".format(prefix, modulo_page),
-                ),
             )
-        ]
-
-    return pairs
         )
 
-    COLUMN_SIZE = 60
+    COLUMN_SIZE = 20
 
     max_num_pages = ceil(len(pairs) / COLUMN_SIZE)
     modulo_page = page_n % max_num_pages
