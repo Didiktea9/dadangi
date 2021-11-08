@@ -356,10 +356,8 @@ async def captcha_state(_, message):
 
 @app.on_message(filters.command("set_welcome") & ~filters.private)
 @adminsOnly("can_change_info")
-async def set_welcome_func(_, Chibai le {name},  {chat} ah hian kanlo lawm a che.
-  He Group hi Lynn Bot hmang tu ten harsatna an neih te sawina tur hmun ani a. Lynn Bot chungchang nilo chu sawi kan phal lutuk lo tih i hre dawn nia.
-~):
-    usage = "Thuziak reply i neih angai, Greetings module ah khan a tihdan kan sawi tawh kha"
+async def set_welcome_func(_, message):
+    usage = "**Text reply angai, Greeting modules ah a tihdan kan sawi tawh kha.**"
     if not message.reply_to_message:
         await message.reply_text(usage)
         return
@@ -379,7 +377,7 @@ async def set_welcome_func(_, Chibai le {name},  {chat} ah hian kanlo lawm a che
 async def del_welcome_func(_, message):
     chat_id = message.chat.id
     await del_welcome(chat_id)
-    await message.reply_text("**Welcome message deleted ani e.**")
+    await message.reply_text("**Welcome message delete ani e.**")
 
 
 @app.on_message(filters.command("get_welcome") & ~filters.private)
