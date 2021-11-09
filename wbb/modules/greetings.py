@@ -54,7 +54,7 @@ __HELP__ = """
 ➤/delwelcome - Welcome message delete na.
 ➤/getwelcome - Welcome message set mek en na.
 
-**SET_WELCOME ->**
+**WELCOME MESSAGE SET DAN ->**
 
 **A format chu  a hnuai ami ang hian i set dawn nia.**
 
@@ -62,7 +62,8 @@ __HELP__ = """
 **Hi** {name} Welcome to {chat}
 
 ~ 
-     He sign (~) hi text leh button then hrangtu tur ani a,  (~) hemi sign tello hi chuan welcome i set dik theilo ang
+     He sign (~) tello hian welcome a set dik theiloh a,i thu type tawpah khan i dah ngei ngei dawn nia. tin (~) hemi sign hi text leh button then hrang tu ani bawk.
+     i set thiam loh chuan support group ah khan #setwelcome tih i thawn dawn nia.
 
 button=[Duck, https://duckduckgo.com]
 button2=[Github, https://github.com]
