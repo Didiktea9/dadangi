@@ -118,12 +118,12 @@ home_keyboard_pm = InlineKeyboardMarkup(
                 callback_data="stats_callback",
             ),
             InlineKeyboardButton(
-                text="🙋 Developer", url="http://t.me/Didiktea"
+                text="🙋 Siamtu", url="http://t.me/Didiktea"
             ),
         ],
         [
             InlineKeyboardButton(
-                text="➕ Add Me To Your Group 🔘",
+                text="➕ Group a Add na 🔘",
                 url=f"http://t.me/{BOT_USERNAME}?startgroup=new",
             )
         ],
@@ -131,7 +131,7 @@ home_keyboard_pm = InlineKeyboardMarkup(
 )
 
 home_text_pm = (
-   f"chibai! Kei hi {BOT_NAME} ka ni a. Group enkawl tur a "
+   f"chibai! Kei hi **{BOT_NAME}** ka ni a. Group enkawl tur a "
     + "**Didiktea** siam ka ni. "
     + "I Group ah Add in min hmang thei ang."
 )
