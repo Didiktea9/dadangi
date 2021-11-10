@@ -81,7 +81,7 @@ async def save_notee(_, message):
         prefix = message.text.split()[0][0]
         chat_id = message.chat.id if prefix != USERBOT_PREFIX else USERBOT_ID
         await save_note(chat_id, name, note)
-        await eor(message, text=f"__**{name} hi note ah save ani e.**__")
+        await eor(message, text=f"__**{name} tih hi note ah save ani e.**__")
 
 
 @app2.on_message(
@@ -99,7 +99,7 @@ async def get_notes(_, message):
     if not _notes:
         return await eor(message, text="**He group ah hian notes save lai a awm rihlo.**")
     _notes.sort()
-    msg = f"**{'USERBOT' if is_ubot else message.chat.title} a note save lai te chu:**\n\n"
+    msg = f"**{'USERBOT' if is_ubot else message.chat.title} a note save lai te chu a hnuai ami te khu an ni.\n Khung a hnuai a hming lo lang te khu an hming hma ah hashtag sign # hemi dah hian i ko chhuak thei ang:**\n\n"
     for note in _notes:
         msg += f"**-** `{note}`\n"
     await eor(message, text=msg)
