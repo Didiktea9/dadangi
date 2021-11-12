@@ -150,14 +150,14 @@ async def getid(client, message):
             user_id = (await client.get_users(split)).id
             text += f"**[User ID:](tg://user?id={user_id})** `{user_id}`\n"
         except Exception:
-            return await eor(message, text="This user doesn't exist.")
+            return await eor(message, text="I mi duh hi Group ah hian a awmlo.")
 
     text += f"**[Group ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
     if not getattr(reply, "empty", True):
         text += (
-            f"**[Replied Message ID:]({reply.link})** `{reply.message_id}`\n"
+            f"**[I Message Reply ID:]({reply.link})** `{reply.message_id}`\n"
         )
-        text += f"**[Replied User ID:](tg://user?id={reply.from_user.id})** `{reply.from_user.id}`"
+        text += f"**[I Reply Mek ID:](tg://user?id={reply.from_user.id})** `{reply.from_user.id}`"
 
     await eor(
         message,
