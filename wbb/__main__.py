@@ -175,7 +175,7 @@ async def start(_, message):
         elif "_" in name:
             module = name.split("_", 1)[1]
             text = (
-                f"A hnuai a mi te khu **{HELPABLE[module].__MODULE__}** chungchang a i hriattur pawimawh te an ni e:\n"
+                f"A hnuai a mi te khu **{HELPABLE[module].__MODULE__}** chungchang a i hriattur pawimawh te an ni e:\n\n"
                 + HELPABLE[module].__HELP__
             )
             await message.reply(text, disable_web_page_preview=True)
@@ -226,7 +226,7 @@ async def help_command(_, message):
             name = (message.text.split(None, 1)[1]).lower()
             if str(name) in HELPABLE:
                 text = (
-                    f"A hnuai ami te khu **{HELPABLE[name].__MODULE__}** chungchang a i hriattur pawimawh te an ni e:\n"
+                    f"A hnuai ami te khu **{HELPABLE[name].__MODULE__}** chungchang a i hriattur pawimawh te an ni e:\n\n"
                     + HELPABLE[name].__HELP__
                 )
                 await message.reply(text, disable_web_page_preview=True)
