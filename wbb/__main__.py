@@ -210,7 +210,7 @@ async def help_command(_, message):
                     ]
                 )
                 await message.reply(
-                    f"Click on the below button to get help about {name}",
+                    f"A hnuai a **click here** tih khu hmet la **start** tih kha i hmet leh dawn nia. \nChuan {name} chungchang i hrethei ang",
                     reply_markup=key,
                 )
             else:
