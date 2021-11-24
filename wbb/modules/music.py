@@ -191,7 +191,7 @@ async def jssong(_, message):
 async def lyrics_func(_, message):
     if len(message.command) < 2:
         return await message.reply_text("**Usage:**\n/lyrics [QUERY]")
-    m = await message.reply_text("**zawng mek...**")
+    m = await message.reply_text("**zawng mek e**")
     query = message.text.strip().split(None, 1)[1]
     song = await arq.lyrics(query)
     lyrics = song.result
