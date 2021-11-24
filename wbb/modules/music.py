@@ -37,9 +37,9 @@ from wbb.utils.pastebin import paste
 
 __MODULE__ = "Music"
 __HELP__ = """
-/ytmusic [link] To Download Music From Various Websites Including Youtube. [SUDOERS]
-/saavn [query] To Download Music From Saavn.
-/lyrics [query] To Get Lyrics Of A Song.
+/ytmusic [link] Youtube video leh site dang ami video download na
+/saavn [query] saavn atang a hla download na.
+/lyrics [query] Hla thu (lyrics) en na.
 """
 
 is_downloading = False
@@ -89,11 +89,11 @@ def download_youtube_audio(url: str):
 async def music(_, message):
     global is_downloading
     if len(message.command) != 2:
-        return await message.reply_text("/ytmusic needs a link as argument")
+        return await message.reply_text("/ytmusic command tur chuan link i post tel angai")
     url = message.text.split(None, 1)[1]
     if is_downloading:
         return await message.reply_text(
-            "Another download is in progress, try again after sometime."
+            "Download lai mek a awm rih a, nakin deuh ah lo ti leh mai ta che."
         )
     is_downloading = True
     m = await message.reply_text(
@@ -146,14 +146,14 @@ async def download_song(url):
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        return await message.reply_text("/saavn requires an argument.")
+        return await message.reply_text("/saavn tih dawt ah hian hla hming ziah tel angai.")
     if is_downloading:
         return await message.reply_text(
-            "Another download is in progress, try again after sometime."
+            "Download lai mek a awm rih a, nakin deuh ah lo ti leh mai ta che."
         )
     is_downloading = True
     text = message.text.split(None, 1)[1]
-    m = await message.reply_text("Searching...")
+    m = await message.reply_text("**Zawn mek ani e...**")
     try:
         songs = await arq.saavn(text)
         if not songs.ok:
@@ -164,9 +164,9 @@ async def jssong(_, message):
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
         sduration = songs.result[0].duration
-        await m.edit("Downloading")
+        await m.edit("**Download mek e...**")
         song = await download_song(slink)
-        await m.edit("Uploading")
+        await m.edit("**Upload mek e...**")
         await message.reply_audio(
             audio=song,
             title=sname,
@@ -188,7 +188,7 @@ async def jssong(_, message):
 async def lyrics_func(_, message):
     if len(message.command) < 2:
         return await message.reply_text("**Usage:**\n/lyrics [QUERY]")
-    m = await message.reply_text("**Searching**")
+    m = await message.reply_text("**zawn mek ani e,lo nghak lawks mai**")
     query = message.text.strip().split(None, 1)[1]
     song = await arq.lyrics(query)
     lyrics = song.result
