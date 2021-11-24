@@ -1,18 +1,15 @@
+
 """
 MIT License
-
 Copyright (c) 2021 TheHamkerCat
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,9 +37,9 @@ from wbb.utils.pastebin import paste
 
 __MODULE__ = "Music"
 __HELP__ = """
-➤/ytmusic [link] Youtube leh website atang a hla download na.
-➤/song [Hla hming] Hla Download na.
-➤/lyrics [Hla hming] Hla lyrics en na.
+/ytmusic [link] To Download Music From Various Websites Including Youtube. [SUDOERS]
+/saavn [query] To Download Music From Saavn.
+/lyrics [query] To Get Lyrics Of A Song.
 """
 
 is_downloading = False
@@ -92,11 +89,11 @@ def download_youtube_audio(url: str):
 async def music(_, message):
     global is_downloading
     if len(message.command) != 2:
-        return await message.reply_text("/ytmusic command hi chu link thawn tel a ngai")
+        return await message.reply_text("/ytmusic needs a link as argument")
     url = message.text.split(None, 1)[1]
     if is_downloading:
         return await message.reply_text(
-            "Download lai mek a awm a,nakin deuh ah ilo ti leh dawn nia ."
+            "Another download is in progress, try again after sometime."
         )
     is_downloading = True
     m = await message.reply_text(
@@ -108,7 +105,7 @@ async def music(_, message):
             None, partial(download_youtube_audio, url)
         )
         if not music:
-            await m.edit("A thui lutuk, Ka Download thei tlat lo.")
+            await m.edit("Too Long, Can't Download.")
         (
             title,
             performer,
@@ -144,19 +141,19 @@ async def download_song(url):
 # Jiosaavn Music
 
 
-@app.on_message(filters.command("song") & ~filters.edited)
+@app.on_message(filters.command("saavn") & ~filters.edited)
 @capture_err
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        return await message.reply_text("/song command tur chuan hla hming ziah tel angai.")
+        return await message.reply_text("/saavn requires an argument.")
     if is_downloading:
         return await message.reply_text(
-            "Download mek a awm a, nakin deuh ah ilo ti leh dawn nia."
+            "Another download is in progress, try again after sometime."
         )
     is_downloading = True
     text = message.text.split(None, 1)[1]
-    m = await message.reply_text("zawng mek,lo nghak lawks...")
+    m = await message.reply_text("Searching...")
     try:
         songs = await arq.saavn(text)
         if not songs.ok:
@@ -167,9 +164,9 @@ async def jssong(_, message):
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
         sduration = songs.result[0].duration
-        await m.edit("**Download mek ani e...**")
+        await m.edit("Downloading")
         song = await download_song(slink)
-        await m.edit("**Upload mek ani e...**")
+        await m.edit("Uploading")
         await message.reply_audio(
             audio=song,
             title=sname,
@@ -191,7 +188,7 @@ async def jssong(_, message):
 async def lyrics_func(_, message):
     if len(message.command) < 2:
         return await message.reply_text("**Usage:**\n/lyrics [QUERY]")
-    m = await message.reply_text("**zawng mek,lo nghak lawks...**")
+    m = await message.reply_text("**Searching**")
     query = message.text.strip().split(None, 1)[1]
     song = await arq.lyrics(query)
     lyrics = song.result
