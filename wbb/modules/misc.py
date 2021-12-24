@@ -91,7 +91,7 @@ __HELP__ = """
 ASQ_LOCK = Lock()
 
 
-@app.on_message(filters.command("Lynn") & ~filters.edited)
+@app.on_message(filters.command("asq") & ~filters.edited)
 async def asq(_, message):
     err = "Reply to text message or pass the question as argument"
     if message.reply_to_message:
@@ -102,7 +102,7 @@ async def asq(_, message):
         if len(message.command) < 2:
             return await message.reply(err)
         question = message.text.split(None, 1)[1]
-    m = await message.reply("Ngaihtuah mek...")
+    m = await message.reply("Thinking...")
     async with ASQ_LOCK:
         resp = await arq.asq(question)
         await m.edit(resp.result)
@@ -117,9 +117,9 @@ async def commit(_, message):
 async def rtfm(_, message):
     await message.delete()
     if not message.reply_to_message:
-        return await message.reply_text("Message reply tel rawh")
+        return await message.reply_text("Reply To A Message lol")
     await message.reply_to_message.reply_text(
-        "A mual bo in i bo deuh tawp ani maw!"
+        "Chhaw kung? DOCS khi chhiar rawh!"
     )
 
 
@@ -139,7 +139,7 @@ async def getid(client, message):
     reply = message.reply_to_message
 
     text = f"**[Message ID:]({message.link})** `{message_id}`\n"
-    text += f"**[Nangma ID:](tg://user?id={your_id})** `{your_id}`\n"
+    text += f"**[Your ID:](tg://user?id={your_id})** `{your_id}`\n"
 
     if not message.command:
         message.command = message.text.split()
@@ -150,14 +150,15 @@ async def getid(client, message):
             user_id = (await client.get_users(split)).id
             text += f"**[User ID:](tg://user?id={user_id})** `{user_id}`\n"
         except Exception:
-            return await eor(message, text="I mi duh hi Group ah hian a awmlo.")
+            return await eor(message, text="This user doesn't exist.")
 
-    text += f"**[Group ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
+    text += f"**[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
     if not getattr(reply, "empty", True):
+        id_ = reply.from_user.id if reply.from_user else reply.sender_chat.id
         text += (
-            f"**[I Message Reply ID:]({reply.link})** `{reply.message_id}`\n"
+            f"**[Replied Message ID:]({reply.link})** `{reply.message_id}`\n"
         )
-        text += f"**[I Reply Mek ID:](tg://user?id={reply.from_user.id})** `{reply.from_user.id}`"
+        text += f"**[Replied User ID:](tg://user?id={id_})** `{id_}`"
 
     await eor(
         message,
@@ -187,7 +188,7 @@ async def random(_, message):
             await message.reply_text("Specify A Length Between 1-1000")
     except ValueError:
         await message.reply_text(
-            "A work lo ang!, 1000 aia tlem si integers dah rawh"
+            "Strings Won't Work!, Pass A Positive Integer Less Than 1000"
         )
 
 
@@ -201,14 +202,14 @@ async def tr(_, message):
     if not message.reply_to_message or not lang:
         return await message.reply_text(
             "Reply to a message with /tr [language code]"
-            + "\nTawng a support te ta tang hian en rawh -"
+            + "\nGet supported language list from here -"
             + " https://py-googletrans.readthedocs.io/en"
             + "/latest/#googletrans-languages"
         )
     reply = message.reply_to_message
     text = reply.text or reply.caption
     if not text:
-        return await message.reply_text("Thuziak reply rawh")
+        return await message.reply_text("Reply to a text to translate it")
     result = await arq.translate(text, lang)
     if not result.ok:
         return await message.reply_text(result.result)
@@ -241,9 +242,9 @@ async def json_fetch(_, message):
 @capture_err
 async def take_ss(_, message):
     if len(message.command) != 2:
-        return await message.reply_text("Screenshot tur chuan URL dah tel angai.")
+        return await message.reply_text("Give A Url To Fetch Screenshot.")
     url = message.text.split(None, 1)[1]
-    m = await message.reply_text("**Upload mek...**")
+    m = await message.reply_text("**Uploading**")
     try:
         await app.send_photo(
             message.chat.id,
@@ -257,5 +258,5 @@ async def take_ss(_, message):
 @app.on_message(filters.command(["kickme", "banme"]))
 async def kickbanme(_, message):
     await message.reply_text(
-        "Haha, tiang kha chuan a work lo ang, i bo vel vek ani maw."
+        "Haha, it doesn't work that way, You're stuck with everyone here."
     )
