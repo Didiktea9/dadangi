@@ -50,7 +50,7 @@ async def authorised(func, subFunc2, client, message, *args, **kwargs):
 async def unauthorised(message: Message, permission, subFunc2):
     chatID = message.chat.id
     text = (
-        "**He thil ti ve tur hian phalna pek i ni tlat lo.**"
+        "You don't have the required permission to perform this action."
         + f"\n**Permission:** __{permission}__"
     )
     try:
@@ -67,7 +67,10 @@ def adminsOnly(permission):
             chatID = message.chat.id
             if not message.from_user:
                 # For anonymous admins
-                if message.sender_chat:
+                if (
+                    message.sender_chat
+                    and message.sender_chat.id == message.chat.id
+                ):
                     return await authorised(
                         func,
                         subFunc2,
