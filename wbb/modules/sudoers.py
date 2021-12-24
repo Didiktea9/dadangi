@@ -67,7 +67,7 @@ async def bot_sys_stats():
     disk = psutil.disk_usage("/").percent
     process = psutil.Process(os.getpid())
     stats = f"""
-{USERBOT_USERNAME}@Lynn
+{USERBOT_USERNAME}@William
 ------------------
 UPTIME: {formatter.get_readable_time((bot_uptime))}
 BOT: {round(process.memory_info()[0] / 1024 ** 2)} MB
@@ -89,9 +89,9 @@ async def ban_globally(_, message):
     from_user = message.from_user
 
     if not user_id:
-        return await message.reply_text("I mi duh hi ka hmu zo lo.")
+        return await message.reply_text("I can't find that user.")
     if not reason:
-        return await message.reply("Chhan engmah a awmlo.")
+        return await message.reply("No reason provided.")
 
     if user_id in ([from_user.id, BOT_ID] + SUDOERS):
         return await message.reply_text("No")
@@ -115,8 +115,8 @@ async def ban_globally(_, message):
     try:
         await app.send_message(
             user.id,
-            f"Hello, globally banned i ni a,ban tu che chu {from_user.mention} ani,"
-            + " Ban hi i duhloh chuan va bia in in sawifiah rawh.",
+            f"Hello, You have been globally banned by {from_user.mention},"
+            + " You can appeal for this ban by talking to him.",
         )
     except Exception:
         pass
@@ -153,7 +153,7 @@ __**New Global Ban**__
 async def unban_globally(_, message):
     user_id = await extract_user(message)
     if not user_id:
-        return await message.reply_text("I mi duh hi ka hmu zo lo.")
+        return await message.reply_text("I can't find that user.")
     user = await app.get_users(user_id)
 
     is_gbanned = await is_gbanned_user(user.id)
@@ -196,6 +196,7 @@ async def broadcast_message(_, message):
 
 # Update
 
+
 @app.on_message(filters.command("update") & filters.user(SUDOERS))
 async def update_restart(_, message):
     try:
@@ -206,5 +207,6 @@ async def update_restart(_, message):
     except Exception as e:
         return await message.reply_text(str(e))
     m = await message.reply_text(
-        "**Updated with default branch, restarting now.**")
+        "**Updated with default branch, restarting now.**"
+    )
     await restart(m)
