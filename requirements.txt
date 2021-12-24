@@ -28,3 +28,4 @@ youtube_search_python
 youtube_search
 asyncio
 tswift
+pytube
