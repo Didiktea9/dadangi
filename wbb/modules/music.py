@@ -1,15 +1,18 @@
-
 """
 MIT License
+
 Copyright (c) 2021 TheHamkerCat
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
+
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -18,17 +21,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-from __future__ import unicode_literals
 
+import datetime
 import os
 from asyncio import get_running_loop
 from functools import partial
 from io import BytesIO
-from urllib.parse import urlparse
 
-import ffmpeg
-import youtube_dl
 from pyrogram import filters
+from pytube import YouTube
+from requests import get
 
 from wbb import aiohttpsession as session
 from wbb import app, arq
@@ -45,42 +47,34 @@ __HELP__ = """
 is_downloading = False
 
 
-def get_file_extension_from_url(url):
-    url_path = urlparse(url).path
-    basename = os.path.basename(url_path)
-    return basename.split(".")[-1]
+def download_youtube_audio(arq_resp):
+    r = arq_resp.result[0]
 
+    title = r.title
+    performer = r.channel
 
-def download_youtube_audio(url: str):
-    global is_downloading
-    with youtube_dl.YoutubeDL(
-        {
-            "format": "bestaudio",
-            "writethumbnail": True,
-            "quiet": True,
-        }
-    ) as ydl:
-        info_dict = ydl.extract_info(url, download=False)
-        if int(float(info_dict["duration"])) > 600:
-            is_downloading = False
-            return []
-        ydl.process_info(info_dict)
-        audio_file = ydl.prepare_filename(info_dict)
-        basename = audio_file.rsplit(".", 1)[-2]
-        if info_dict["ext"] == "webm":
-            audio_file_opus = basename + ".opus"
-            ffmpeg.input(audio_file).output(
-                audio_file_opus, codec="copy", loglevel="error"
-            ).overwrite_output().run()
-            os.remove(audio_file)
-            audio_file = audio_file_opus
-        thumbnail_url = info_dict["thumbnail"]
-        thumbnail_file = (
-            basename + "." + get_file_extension_from_url(thumbnail_url)
-        )
-        title = info_dict["title"]
-        performer = info_dict["uploader"]
-        duration = int(float(info_dict["duration"]))
+    m, s = r.duration.split(":")
+    duration = int(
+        datetime.timedelta(minutes=int(m), seconds=int(s)).total_seconds()
+    )
+
+    if duration > 1800:
+        return
+
+    thumb = get(r.thumbnails[0]).content
+    with open("thumbnail.png", "wb") as f:
+        f.write(thumb)
+    thumbnail_file = "thumbnail.png"
+
+    url = f"https://youtube.com{r.url_suffix}"
+    yt = YouTube(url)
+    audio = yt.streams.filter(only_audio=True).get_audio_only()
+
+    out_file = audio.download()
+    base, _ = os.path.splitext(out_file)
+    audio_file = base + ".mp3"
+    os.rename(out_file, audio_file)
+
     return [title, performer, duration, audio_file, thumbnail_file]
 
 
@@ -88,12 +82,13 @@ def download_youtube_audio(url: str):
 @capture_err
 async def music(_, message):
     global is_downloading
-    if len(message.command) != 2:
-        return await message.reply_text("/ytmusic command tur chuan link i post tel angai")
+    if len(message.command) < 2:
+        return await message.reply_text("/ytmusic needs a query as argument")
+
     url = message.text.split(None, 1)[1]
     if is_downloading:
         return await message.reply_text(
-            "Download lai mek a awm rih a, nakin deuh ah lo ti leh mai ta che."
+            "Another download is in progress, try again after sometime."
         )
     is_downloading = True
     m = await message.reply_text(
@@ -101,11 +96,13 @@ async def music(_, message):
     )
     try:
         loop = get_running_loop()
+        arq_resp = await arq.youtube(url)
         music = await loop.run_in_executor(
-            None, partial(download_youtube_audio, url)
+            None, partial(download_youtube_audio, arq_resp)
         )
+
         if not music:
-            await m.edit("Too Long, Can't Download.")
+            return await message.reply_text("[ERROR]: MUSIC TOO LONG")
         (
             title,
             performer,
@@ -146,14 +143,14 @@ async def download_song(url):
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        return await message.reply_text("/saavn tih dawt ah hian hla hming ziah tel angai.")
+        return await message.reply_text("/saavn requires an argument.")
     if is_downloading:
         return await message.reply_text(
-            "Download lai mek a awm rih a, nakin deuh ah lo ti leh mai ta che."
+            "Another download is in progress, try again after sometime."
         )
     is_downloading = True
     text = message.text.split(None, 1)[1]
-    m = await message.reply_text("**Zawn mek ani e...**")
+    m = await message.reply_text("Searching...")
     try:
         songs = await arq.saavn(text)
         if not songs.ok:
@@ -164,9 +161,9 @@ async def jssong(_, message):
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
         sduration = songs.result[0].duration
-        await m.edit("**Download mek e...**")
+        await m.edit("Downloading")
         song = await download_song(slink)
-        await m.edit("**Upload mek e...**")
+        await m.edit("Uploading")
         await message.reply_audio(
             audio=song,
             title=sname,
@@ -188,7 +185,7 @@ async def jssong(_, message):
 async def lyrics_func(_, message):
     if len(message.command) < 2:
         return await message.reply_text("**Usage:**\n/lyrics [QUERY]")
-    m = await message.reply_text("**zawn mek ani e,lo nghak lawks mai**")
+    m = await message.reply_text("**Searching**")
     query = message.text.strip().split(None, 1)[1]
     song = await arq.lyrics(query)
     lyrics = song.result
