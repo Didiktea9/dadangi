@@ -33,17 +33,17 @@ from wbb.utils.functions import get_urls_from_text
 
 __MODULE__ = "Locks"
 __HELP__ = """
-Commands: /lock | /unlock | /locks [A hnuai a parameters te khu a theih vek]
+Commands: /lock | /unlock | /locks 
 
 Parameters:
     messages | stickers | gifs | media | games | polls
 
     inline  | url | group_info | user_add | pin
 
-/lock tih i hman hi chuan a chung ami Parameters te khi a theih vek, /unlock hi chuan a theihloh
+All tih khi chu /lock ah chiah a hman theih, /unlock ah a theih veloh
 
-Example:
-    ➤/lock all
+Entirna:
+    /lock all
 """
 
 incorrect_parameters = "Incorrect Parameters, Check Locks Section In Help."
@@ -68,11 +68,11 @@ data = {
 async def tg_lock(message, permissions: list, perm: str, lock: bool):
     if lock:
         if perm not in permissions:
-            return await message.reply_text("lock ani e.")
+            return await message.reply_text("Already locked.")
         permissions.remove(perm)
     else:
         if perm in permissions:
-            return await message.reply_text("Unlock ani e.")
+            return await message.reply_text("Already Unlocked.")
         permissions.append(perm)
 
     permissions = {perm: True for perm in list(set(permissions))}
@@ -83,10 +83,10 @@ async def tg_lock(message, permissions: list, perm: str, lock: bool):
         )
     except ChatNotModified:
         return await message.reply_text(
-            "Hemi unlock tur hi chuan, 'messages' khi unlock hmasak angai."
+            "To unlock this, you have to unlock 'messages' first."
         )
 
-    await message.reply_text(("Locked a ni." if lock else "Unlocked a ni."))
+    await message.reply_text(("Locked." if lock else "Unlocked."))
 
 
 @app.on_message(filters.command(["lock", "unlock"]) & ~filters.private)
@@ -113,25 +113,26 @@ async def locks_func(_, message):
         )
     elif parameter == "all" and state == "lock":
         await app.set_chat_permissions(chat_id, ChatPermissions())
-        await message.reply_text(f"{message.chat.title} ah hian lock a awmlo")
+        await message.reply_text(f"Locked Everything in {message.chat.title}")
 
     elif parameter == "all" and state == "unlock":
         await app.set_chat_permissions(
-         chat_id,
-         ChatPermissions(
-            can_send_messages=True,
-            can_send_media_messages=True,
-            can_send_stickers=True,
-            can_send_animations=True,
-            can_invite_users=True,
-            can_send_games=True,
-            can_use_inline_bots=True,
-            can_send_polls=True,
-            can_add_web_page_previews=True
-                        )
-                                 )
-        await message.reply(f"{message.chat.title} ah hian lock a awm lo.")
-                  
+            chat_id,
+            ChatPermissions(
+                can_send_messages=True,
+                can_send_media_messages=True,
+                can_send_stickers=True,
+                can_send_animations=True,
+                can_invite_users=True,
+                can_send_games=True,
+                can_use_inline_bots=True,
+                can_send_polls=True,
+                can_add_web_page_previews=True,
+            ),
+        )
+        await message.reply(f"Unlocked Everything in {message.chat.title}")
+
+
 @app.on_message(filters.command("locks") & ~filters.private)
 @capture_err
 async def locktypes(_, message):
@@ -166,6 +167,6 @@ async def url_detector(_, message):
                 await message.delete()
             except Exception:
                 await message.reply_text(
-                    "He thu ah hian URL a awm a, "
-                    + "delete turin thuneihna ka neilo"
+                    "This message contains a URL, "
+                    + "but i don't have enough permissions to delete it"
                 )
