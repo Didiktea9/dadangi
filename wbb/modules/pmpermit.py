@@ -56,7 +56,7 @@ async def pmpermit_func(_, message):
     else:
         flood[str(user_id)] = 1
     if flood[str(user_id)] > 5:
-        await message.reply_text("BOT NEITU IN A APPROVE HMALOH CHE CHUAN, BLOCKED I NI RIH ANG!")
+        await message.reply_text("SPAM DETECTED, BLOCKED USER AUTOMATICALLY!")
         return await app2.block_user(user_id)
     results = await app2.get_inline_bot_results(BOT_ID, f"pmpermit {user_id}")
     await app2.send_inline_bot_result(
@@ -75,12 +75,12 @@ async def pmpermit_func(_, message):
 @capture_err
 async def pm_approve(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="Approve tur chuan message i reply tel angai.")
+        return await eor(message, text="Reply to a user's message to approve.")
     user_id = message.reply_to_message.from_user.id
     if await is_pmpermit_approved(user_id):
-        return await eor(message, text="user hi approved ani tawh e")
+        return await eor(message, text="User is already approved to pm")
     await approve_pmpermit(user_id)
-    await eor(message, text="User hi approved ani tawh e")
+    await eor(message, text="User is approved to pm")
 
 
 @app2.on_message(
@@ -90,10 +90,12 @@ async def pm_approve(_, message):
 )
 async def pm_disapprove(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="Approve tur chuan message i reply tel angai.")
+        return await eor(
+            message, text="Reply to a user's message to disapprove."
+        )
     user_id = message.reply_to_message.from_user.id
     if not await is_pmpermit_approved(user_id):
-        await eor(message, text="user hi approved ani tawh e")
+        await eor(message, text="User is already disapproved to pm")
         async for m in app2.iter_history(user_id, limit=6):
             if m.reply_markup:
                 try:
@@ -102,7 +104,7 @@ async def pm_disapprove(_, message):
                     pass
         return
     await disapprove_pmpermit(user_id)
-    await eor(message, text="User hi approve ala nilo")
+    await eor(message, text="User is disapproved to pm")
 
 
 @app2.on_message(
@@ -113,10 +115,10 @@ async def pm_disapprove(_, message):
 @capture_err
 async def block_user_func(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="Block tur chuan message reply tel angai.")
+        return await eor(message, text="Reply to a user's message to block.")
     user_id = message.reply_to_message.from_user.id
     # Blocking user after editing the message so that other person can get the update.
-    await eor(message, text="Hlawhtling takin user hi block ani e")
+    await eor(message, text="Successfully blocked the user")
     await app2.block_user(user_id)
 
 
@@ -127,10 +129,10 @@ async def block_user_func(_, message):
 )
 async def unblock_user_func(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="unblock tur chuan message reply tel angai.")
+        return await eor(message, text="Reply to a user's message to unblock.")
     user_id = message.reply_to_message.from_user.id
     await app2.unblock_user(user_id)
-    await eor(message, text="Hlawhtling takin user hi Unblocked ani e")
+    await eor(message, text="Successfully Unblocked the user")
 
 
 # CALLBACK QUERY HANDLER
@@ -147,18 +149,18 @@ async def pmpermit_cq(_, cq):
     )
     if data == "approve":
         if user_id != USERBOT_ID:
-            return await cq.answer("He Button hi chu i tan ani velo")
+            return await cq.answer("This Button Is Not For You")
         await approve_pmpermit(int(victim))
         return await app.edit_inline_text(
-            cq.inline_message_id, "User hi Approved ani e."
+            cq.inline_message_id, "User Has Been Approved To PM."
         )
 
     if data == "block":
         if user_id != USERBOT_ID:
-            return await cq.answer("He Button hi chu i tan ani velo")
+            return await cq.answer("This Button Is Not For You")
         await cq.answer()
         await app.edit_inline_text(
-            cq.inline_message_id, "Hlawhtling takin user hi blocked ani e."
+            cq.inline_message_id, "Successfully blocked the user."
         )
         await app2.block_user(int(victim))
         return await app2.send(
@@ -170,7 +172,7 @@ async def pmpermit_cq(_, cq):
         )
 
     if user_id == USERBOT_ID:
-        return await cq.answer("Hei chu midang tan aw.")
+        return await cq.answer("It's For The Other Person.")
 
     if data == "to_scam_you":
         async for m in app2.iter_history(user_id, limit=6):
@@ -187,9 +189,9 @@ async def pmpermit_cq(_, cq):
         else:
             flood2[str(user_id)] = 1
         if flood2[str(user_id)] > 5:
-            await app2.send_message(user_id, "APPROVED I NIH HMA CHU, BLOCKED RIH I NI ANG.")
+            await app2.send_message(user_id, "SPAM DETECTED, USER BLOCKED.")
             return await app2.block_user(user_id)
         await app2.send_message(
             user_id,
-            "Kabuai rih lawk a, hman veleh approve i ni ang, message lo thawn teuh suh.",
+            "I'm busy right now, will approve you shortly, DO NOT SPAM.",
         )
