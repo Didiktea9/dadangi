@@ -40,21 +40,21 @@ from wbb.utils.functions import extract_user, extract_user_and_reason, restart
 
 __MODULE__ = "Sudoers"
 __HELP__ = """
-/stats - To Check System Status.
+/stats - System Status check na.
 
-/gstats - To Check Bot's Global Stats.
+/gstats - Bot Status check na.
 
-/gban - To Ban A User Globally.
+/gban - Globally a member ban na.
 
-/clean_db - Clean database.
+/clean_db - Database thenfai na.
 
-/broadcast - To Broadcast A Message To All Groups.
+/broadcast - Bot awmna Group a a rual a message thawn na.
 
-/update - To Update And Restart The Bot
+/update - Bot Update leh Restart na
 
-/eval - Execute Python Code
+/eval - Python Code execute na
 
-/sh - Execute Shell Code
+/sh - Shell Code execute na
 """
 
 # Stats Module
@@ -67,7 +67,7 @@ async def bot_sys_stats():
     disk = psutil.disk_usage("/").percent
     process = psutil.Process(os.getpid())
     stats = f"""
-{USERBOT_USERNAME}@William
+{USERBOT_USERNAME}@DikaMs_bot
 ------------------
 UPTIME: {formatter.get_readable_time((bot_uptime))}
 BOT: {round(process.memory_info()[0] / 1024 ** 2)} MB
@@ -89,17 +89,17 @@ async def ban_globally(_, message):
     from_user = message.from_user
 
     if not user_id:
-        return await message.reply_text("I can't find that user.")
+        return await message.reply_text("I mi duh hi ka hmu tlat lo.")
     if not reason:
-        return await message.reply("No reason provided.")
+        return await message.reply("A chhan telh rawh.")
 
     if user_id in ([from_user.id, BOT_ID] + SUDOERS):
         return await message.reply_text("No")
 
     served_chats = await get_served_chats()
     m = await message.reply_text(
-        f"**Banning {user.mention} Globally!**"
-        + f" **This Action Should Take About {len(served_chats)} Seconds.**"
+        f"**{user.mention} hi Global ban ani!**"
+        + f" **Heihian {len(served_chats)} Seconds vel a ngai ang.**"
     )
     await add_gban_user(user_id)
     number_of_chats = 0
@@ -115,8 +115,8 @@ async def ban_globally(_, message):
     try:
         await app.send_message(
             user.id,
-            f"Hello, You have been globally banned by {from_user.mention},"
-            + " You can appeal for this ban by talking to him.",
+            f"Hello, global ban i ni a,i duh chuan {from_user.mention},"
+            + " Hi bia in i in sawifiah thei ang.",
         )
     except Exception:
         pass
@@ -125,9 +125,9 @@ async def ban_globally(_, message):
 __**New Global Ban**__
 **Origin:** {message.chat.title} [`{message.chat.id}`]
 **Admin:** {from_user.mention}
-**Banned User:** {user.mention}
-**Banned User ID:** `{user_id}`
-**Reason:** __{reason}__
+**Bann hming:** {user.mention}
+**Ban user ID:** `{user_id}`
+**A chhan:** __{reason}__
 **Chats:** `{number_of_chats}`"""
     try:
         m2 = await app.send_message(
