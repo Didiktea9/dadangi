@@ -47,23 +47,22 @@ from wbb.utils.functions import extract_text_and_keyb, generate_captcha
 
 __MODULE__ = "Greetings"
 __HELP__ = """
-➤/captcha [ENABLE|DISABLE] - Captcha on na leh off na.
+/captcha [ENABLE|DISABLE] - Enable/Disable captcha.
 
-➤/setwelcome - Welcome message tur a i duh kha format diktak in type la,chu chu command hmang sawn i reply dawn nia. 
+/set_welcome - Reply this to a message containing correct
+format for a welcome message, check end of this message.
 
-➤/delwelcome - Welcome message delete na.
-➤/getwelcome - Welcome message set mek en na.
+/del_welcome - Delete the welcome message.
+/get_welcome - Get the welcome message.
 
-**WELCOME MESSAGE SET DAN ->**
+**SET_WELCOME ->**
 
-**A format chu  a hnuai ami ang hian i set dawn nia.**
+The format should be something like below.
 
 ```
 **Hi** {name} Welcome to {chat}
 
-~ 
-     He sign (~) tello hian welcome a set dik theiloh a,i thu type tawpah khan i dah ngei ngei dawn nia. tin (~) hemi sign hi text leh button then hrang tu ani bawk.
-     i set thiam loh chuan support group ah khan #setwelcome tih i thawn dawn nia.
+~ #This separater (~) should be there between text and buttons, remove this comment also
 
 button=[Duck, https://duckduckgo.com]
 button2=[Github, https://github.com]
@@ -71,11 +70,11 @@ button2=[Github, https://github.com]
 
 **NOTES ->**
 
-/rules atan bik chuan, /filter rules tih pawh a hmantheih
-tho bawk.I group members ten he
-/rules tih hi an thawn apiangin, an hmu thei ang
+for /rules, you can do /filter rules to a message
+containing rules of your groups whenever a user
+sends /rules, he'll get the message
 
-A hnuai a /markdownhelp khu formatting and syntax dik leh dikloh i hriat theih nan chhiar ang che.
+Checkout /markdownhelp to know more about formattings and other syntax.
 """
 
 
@@ -111,11 +110,11 @@ async def welcome(_, message: Message):
                 continue  # ignore sudo users
 
             if await is_gbanned_user(member.id):
-                await message.chat.kick_member(member.id)
+                await message.chat.ban_member(member.id)
                 await message.reply_text(
-                    f"{member.mention} chu global banned leh removed ani e,"
-                    + " He thil hi tihsual palh avanga gban ni a i hriat chuan, support Group"
-                    + " ah ilo sawi dawn nia."
+                    f"{member.mention} was globally banned, and got removed,"
+                    + " if you think this is a false gban, you can appeal"
+                    + " for this ban in support chat."
                 )
                 continue
 
@@ -129,9 +128,9 @@ async def welcome(_, message: Message):
 
             await message.chat.restrict_member(member.id, ChatPermissions())
             text = (
-                f"**Duhtak {(member.mention())} Mihring i ni ngei em fiah lawk ang aw** !\n\n"
-                f"**Thlalak a thil inziak ang khi a hnuai ami ah khuan en mil la {WELCOME_DELAY_KICK_SEC}** "
-                "**seconds (5 mins) chhung a i hmet hmanlo emaw vawi 4 i tidiklo anih chuan Group ah hian i awm ve theilo ang**."
+                f"{(member.mention())} Are you human?\n"
+                f"Solve this captcha in {WELCOME_DELAY_KICK_SEC} "
+                "seconds and 4 attempts or you'll be kicked."
             )
         except ChatAdminRequired:
             return
@@ -245,10 +244,10 @@ async def callback_query_welcome_button(_, callback_query):
                 keyboard = i["keyboard"]
 
     if pending_user_id != pressed_user_id:
-        return await callback_query.answer("Hei hi chu i ti ve theilo")
+        return await callback_query.answer("This is not for you")
 
     if answer != correct_answer:
-        await callback_query.answer("Aw, a diklo.")
+        await callback_query.answer("Yeah, It's Wrong.")
         for iii in answers_dicc:
             if (
                 iii["user_id"] == pending_user_id
@@ -257,7 +256,7 @@ async def callback_query_welcome_button(_, callback_query):
                 attempts = iii["attempts"]
                 if attempts >= 3:
                     answers_dicc.remove(iii)
-                    await button_message.chat.kick_member(pending_user_id)
+                    await button_message.chat.ban_member(pending_user_id)
                     await asyncio.sleep(1)
                     await button_message.chat.unban_member(pending_user_id)
                     await button_message.delete()
@@ -277,7 +276,7 @@ async def callback_query_welcome_button(_, callback_query):
             reply_markup=keyboard,
         )
 
-    await callback_query.answer("Captcha i ti dik e!")
+    await callback_query.answer("Captcha passed successfully!")
     await button_message.chat.unban_member(pending_user_id)
     await button_message.delete()
 
@@ -327,7 +326,7 @@ async def _ban_restricted_user_until_date(
         member = await group_chat.get_member(user_id)
         if member.status == "restricted":
             until_date = int(datetime.utcnow().timestamp() + duration)
-            await group_chat.kick_member(user_id, until_date=until_date)
+            await group_chat.ban_member(user_id, until_date=until_date)
     except UserNotParticipant:
         pass
 
@@ -344,10 +343,10 @@ async def captcha_state(_, message):
     state = state.lower()
     if state == "enable":
         await captcha_on(chat_id)
-        await message.reply_text("**Members thar tan Captcha on a ni e.**")
+        await message.reply_text("Enabled Captcha For New Users.")
     elif state == "disable":
         await captcha_off(chat_id)
-        await message.reply_text("**Members thar tan Captcha off ani e.**")
+        await message.reply_text("Disabled Captcha For New Users.")
     else:
         await message.reply_text(usage)
 
@@ -355,10 +354,10 @@ async def captcha_state(_, message):
 # WELCOME MESSAGE
 
 
-@app.on_message(filters.command("setwelcome") & ~filters.private)
+@app.on_message(filters.command("set_welcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def set_welcome_func(_, message):
-    usage = "**Text reply angai, Greeting modules ah a tihdan kan sawi tawh kha.**"
+    usage = "You need to reply to a text, check the Greetings module in /help"
     if not message.reply_to_message:
         await message.reply_text(usage)
         return
@@ -368,29 +367,29 @@ async def set_welcome_func(_, message):
     chat_id = message.chat.id
     raw_text = message.reply_to_message.text.markdown
     if not (extract_text_and_keyb(ikb, raw_text)):
-        return await message.reply_text("Format diklo i hmang, Chhiar chiang hram rawh.")
+        return await message.reply_text("Wrong formating, check help section.")
     await set_welcome(chat_id, raw_text)
-    await message.reply_text("**Hlawhtling takin Welcome message set ani e.**")
+    await message.reply_text("Welcome message has been successfully set.")
 
 
-@app.on_message(filters.command("delwelcome") & ~filters.private)
+@app.on_message(filters.command("del_welcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def del_welcome_func(_, message):
     chat_id = message.chat.id
     await del_welcome(chat_id)
-    await message.reply_text("**Welcome message delete ani e.**")
+    await message.reply_text("Welcome message has been deleted.")
 
 
-@app.on_message(filters.command("getwelcome") & ~filters.private)
+@app.on_message(filters.command("get_welcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def get_welcome_func(_, message):
     chat = message.chat
     welcome = await get_welcome(chat.id)
     if not welcome:
-        return await message.reply_text("**Group ah hian Welcome message set a la nilo.**")
+        return await message.reply_text("No welcome message set.")
     if not message.from_user:
         return await message.reply_text(
-            "Bengtulul, welcome message a en theihloh."
+            "You're anon, can't send welcome message."
         )
 
     await send_welcome_message(chat, message.from_user.id)
