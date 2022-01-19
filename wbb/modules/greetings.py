@@ -47,34 +47,34 @@ from wbb.utils.functions import extract_text_and_keyb, generate_captcha
 
 __MODULE__ = "Greetings"
 __HELP__ = """
-/captcha [ENABLE|DISABLE] - Enable/Disable captcha.
+/captcha [ENABLE|DISABLE] - Captcha tihnun na.
 
-/set_welcome - Reply this to a message containing correct
-format for a welcome message, check end of this message.
+/set_welcome - welcome message set na
+A format khu chiangtak in chhiar ang che.
 
-/del_welcome - Delete the welcome message.
-/get_welcome - Get the welcome message.
+/del_welcome - Welcome message delete na.
+/get_welcome - Welcome message hman lai mek en na.
 
 **SET_WELCOME ->**
 
-The format should be something like below.
+A set dan chu a hnuai a mi ang hian in set dawn nia,a tawp ah ~ hemi sign hi telh ngei ngei tur.
 
 ```
 **Hi** {name} Welcome to {chat}
 
-~ #This separater (~) should be there between text and buttons, remove this comment also
+~ #Hemi sign (~) hi text leh button inkar ah dah ngei ngei tur
 
-button=[Duck, https://duckduckgo.com]
+button=[Zo Android, https://zoandroid.com]
 button2=[Github, https://github.com]
 ```
 
 **NOTES ->**
 
-for /rules, you can do /filter rules to a message
-containing rules of your groups whenever a user
-sends /rules, he'll get the message
+/rules atan chuan, /filter rules hian set
+Mai tur ani,chuan members ten he command
+/rules tih an thawn hian group rules an hmu thei ang
 
-Checkout /markdownhelp to know more about formattings and other syntax.
+/markdownhelp tih hi group ah thawn la, a format hman dan chu i hrechiang thei ang.
 """
 
 
@@ -244,10 +244,10 @@ async def callback_query_welcome_button(_, callback_query):
                 keyboard = i["keyboard"]
 
     if pending_user_id != pressed_user_id:
-        return await callback_query.answer("This is not for you")
+        return await callback_query.answer("I tih ve chi ani lo")
 
     if answer != correct_answer:
-        await callback_query.answer("Yeah, It's Wrong.")
+        await callback_query.answer("A diklo.")
         for iii in answers_dicc:
             if (
                 iii["user_id"] == pending_user_id
@@ -276,7 +276,7 @@ async def callback_query_welcome_button(_, callback_query):
             reply_markup=keyboard,
         )
 
-    await callback_query.answer("Captcha passed successfully!")
+    await callback_query.answer("Captcha te tihdik ani e!")
     await button_message.chat.unban_member(pending_user_id)
     await button_message.delete()
 
@@ -343,10 +343,10 @@ async def captcha_state(_, message):
     state = state.lower()
     if state == "enable":
         await captcha_on(chat_id)
-        await message.reply_text("Enabled Captcha For New Users.")
+        await message.reply_text("Mi thar ta captcha tihnun ani.")
     elif state == "disable":
         await captcha_off(chat_id)
-        await message.reply_text("Disabled Captcha For New Users.")
+        await message.reply_text("Mi thar tan captcha tih thih ani.")
     else:
         await message.reply_text(usage)
 
@@ -357,7 +357,7 @@ async def captcha_state(_, message):
 @app.on_message(filters.command("set_welcome") & ~filters.private)
 @adminsOnly("can_change_info")
 async def set_welcome_func(_, message):
-    usage = "You need to reply to a text, check the Greetings module in /help"
+    usage = "Text reply tel angai, /help tih bot hi thawn la,greeting module ah khan enchiang rawh"
     if not message.reply_to_message:
         await message.reply_text(usage)
         return
@@ -367,9 +367,9 @@ async def set_welcome_func(_, message):
     chat_id = message.chat.id
     raw_text = message.reply_to_message.text.markdown
     if not (extract_text_and_keyb(ikb, raw_text)):
-        return await message.reply_text("Wrong formating, check help section.")
+        return await message.reply_text("I format a diklo,enchiang leh rawh.")
     await set_welcome(chat_id, raw_text)
-    await message.reply_text("Welcome message has been successfully set.")
+    await message.reply_text("Welcome message set ani e.")
 
 
 @app.on_message(filters.command("del_welcome") & ~filters.private)
@@ -377,7 +377,7 @@ async def set_welcome_func(_, message):
 async def del_welcome_func(_, message):
     chat_id = message.chat.id
     await del_welcome(chat_id)
-    await message.reply_text("Welcome message has been deleted.")
+    await message.reply_text("Welcome message delete ani.")
 
 
 @app.on_message(filters.command("get_welcome") & ~filters.private)
@@ -386,10 +386,10 @@ async def get_welcome_func(_, message):
     chat = message.chat
     welcome = await get_welcome(chat.id)
     if not welcome:
-        return await message.reply_text("No welcome message set.")
+        return await message.reply_text("welcome message set ala nilo.")
     if not message.from_user:
         return await message.reply_text(
-            "You're anon, can't send welcome message."
+            "Mawlmuk, welcome message a thawn theihloh."
         )
 
     await send_welcome_message(chat, message.from_user.id)
