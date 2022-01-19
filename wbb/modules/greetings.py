@@ -64,7 +64,7 @@ A set dan chu a hnuai a mi ang hian in set dawn nia,a tawp ah ~ hemi sign hi tel
 
 ~ #Hemi sign (~) hi text leh button inkar ah dah ngei ngei tur
 
-button=[Zo Android, https://zoandroid.com]
+button=[Google, https://google.com]
 button2=[Github, https://github.com]
 ```
 
