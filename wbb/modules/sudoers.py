@@ -40,21 +40,21 @@ from wbb.utils.functions import extract_user, extract_user_and_reason, restart
 
 __MODULE__ = "Sudoers"
 __HELP__ = """
-➤/stats - System Status check na.
+/stats - To Check System Status.
 
-➤/gstats - Bot's Global Stats check na.
+/gstats - To Check Bot's Global Stats.
 
-➤/gban - Mi ban na.
+/gban - To Ban A User Globally.
 
-➤/clean_db - Database thenfai na.
+/clean_db - Clean database.
 
-➤/broadcast - Bot awmna Group zawng zawng ah a ruala thu post na.
+/broadcast - To Broadcast A Message To All Groups.
 
-➤/update - Bot Update leh Restart na
+/update - To Update And Restart The Bot
 
-➤/eval - Python Code thawh tir na
+/eval - Execute Python Code
 
-➤/sh - Shell Code thawh tir na
+/sh - Execute Shell Code
 """
 
 # Stats Module
@@ -67,7 +67,7 @@ async def bot_sys_stats():
     disk = psutil.disk_usage("/").percent
     process = psutil.Process(os.getpid())
     stats = f"""
-{USERBOT_USERNAME}@Lynn
+{USERBOT_USERNAME}@William
 ------------------
 UPTIME: {formatter.get_readable_time((bot_uptime))}
 BOT: {round(process.memory_info()[0] / 1024 ** 2)} MB
@@ -105,7 +105,7 @@ async def ban_globally(_, message):
     number_of_chats = 0
     for served_chat in served_chats:
         try:
-            await app.kick_chat_member(served_chat["chat_id"], user.id)
+            await app.ban_chat_member(served_chat["chat_id"], user.id)
             number_of_chats += 1
             await asyncio.sleep(1)
         except FloodWait as e:
