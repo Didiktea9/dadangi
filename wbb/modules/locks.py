@@ -86,7 +86,7 @@ async def tg_lock(message, permissions: list, perm: str, lock: bool):
             "Hemi unlock tur hi chuan, 'messages' hi unlock hmasak phawt angai."
         )
 
-    await message.reply_text(("Lock ani." I duh chuan i "Unlock thei ang."))
+    await message.reply_text(("Lock ani. I duh chuan i Unlock thei ang."))
 
 
 @app.on_message(filters.command(["lock", "unlock"]) & ~filters.private)
