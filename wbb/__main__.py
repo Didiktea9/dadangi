@@ -307,7 +307,7 @@ General command are:
         module = (mod_match.group(1)).replace(" ", "_")
         text = (
             "{} **{}**:\n".format(
-                "A hnuai ami te khu", HELPABLE[module] hrechiang turin hmet rawh.__MODULE__
+                "Here is the help for", HELPABLE[module].__MODULE__
             )
             + HELPABLE[module].__HELP__
         )
