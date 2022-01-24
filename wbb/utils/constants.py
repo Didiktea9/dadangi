@@ -23,8 +23,8 @@ NOTE: Greetings module a fillings hman theih te.
 <code>__italic__</code>: Sawtiang saw <i>italic</i> a ziahna.
 <code>--underline--</code>: Sawtiang saw <u>underline</u> a thuziah na.
 <code>`code words`</code>: sawtiang saw thuziak <code>code</code> a ziahna.
-<code>||spoiler||</code>: Sawtiang saw <spoiler>Spoiler</spoiler> a thu ziahna.
-<code>[hyperlink](google.com)</code>: Sawtiang saw thuziak <a href='https://www.google.com'>hyperlink</a> te link a dahna.
+<code>||spoiler||</code>: Sawtiang <spoiler>Spoiler</spoiler> hetiang a chethei a thu ziahna.
+<code>[hyperlink](google.com)</code>: Sawtiang saw thuziak <a href='https://www.google.com'>Link</a> a dahna.
 <b>Note:</b> Markdown & html tag te i hmang thei ve ve.
 
 
