@@ -62,7 +62,7 @@ A format hman dan chu a hnuai ami ang deuh hi ani mai.
 ```
 **Hi** {name} Welcome to {chat}
 
-~ #He sign (~) hitext and buttons daidang tu ani a, i dah ngei ngei dawn nia
+~ He sign (~) hitext and buttons daidang tu ani a, i dah ngei ngei dawn nia.
 
 button=[Duck, https://duckduckgo.com]
 button2=[Github, https://github.com]
