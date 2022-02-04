@@ -75,12 +75,12 @@ async def pmpermit_func(_, message):
 @capture_err
 async def pm_approve(_, message):
     if not message.reply_to_message:
-        return await eor(message, text="Reply to a user's message to approve.")
+        return await eor(message, text="Message reply khian phalna pe rawh.")
     user_id = message.reply_to_message.from_user.id
     if await is_pmpermit_approved(user_id):
-        return await eor(message, text="User is already approved to pm")
+        return await eor(message, text="Phalna pek ani tawh e")
     await approve_pmpermit(user_id)
-    await eor(message, text="User is approved to pm")
+    await eor(message, text="Min be thei turin phalna pek i ni e")
 
 
 @app2.on_message(
@@ -91,11 +91,11 @@ async def pm_approve(_, message):
 async def pm_disapprove(_, message):
     if not message.reply_to_message:
         return await eor(
-            message, text="Reply to a user's message to disapprove."
+            message, text="Message reply khian disapprove rawh."
         )
     user_id = message.reply_to_message.from_user.id
     if not await is_pmpermit_approved(user_id):
-        await eor(message, text="User is already disapproved to pm")
+        await eor(message, text="Disapprove ani tawh")
         async for m in app2.iter_history(user_id, limit=6):
             if m.reply_markup:
                 try:
@@ -193,5 +193,5 @@ async def pmpermit_cq(_, cq):
             return await app2.block_user(user_id)
         await app2.send_message(
             user_id,
-            "I'm busy right now, will approve you shortly, DO NOT SPAM.",
+            "Ka la hman rihlo a ka approve hun che lo nghak la message lo thawn teuh suh.",
         )
