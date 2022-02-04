@@ -104,7 +104,7 @@ async def pm_disapprove(_, message):
                     pass
         return
     await disapprove_pmpermit(user_id)
-    await eor(message, text="User is disapproved to pm")
+    await eor(message, text="Disapprove ani e")
 
 
 @app2.on_message(
@@ -152,7 +152,7 @@ async def pmpermit_cq(_, cq):
             return await cq.answer("This Button Is Not For You")
         await approve_pmpermit(int(victim))
         return await app.edit_inline_text(
-            cq.inline_message_id, "User Has Been Approved To PM."
+            cq.inline_message_id, "Min be turin phalna pek i ni e."
         )
 
     if data == "block":
@@ -178,7 +178,7 @@ async def pmpermit_cq(_, cq):
         async for m in app2.iter_history(user_id, limit=6):
             if m.reply_markup:
                 await m.delete()
-        await app2.send_message(user_id, "Blocked, Go scam someone else.")
+        await app2.send_message(user_id, "Block i ni e, thu i awihloh avangin.")
         await app2.block_user(user_id)
         await cq.answer()
 
@@ -189,7 +189,7 @@ async def pmpermit_cq(_, cq):
         else:
             flood2[str(user_id)] = 1
         if flood2[str(user_id)] > 5:
-            await app2.send_message(user_id, "SPAM DETECTED, USER BLOCKED.")
+            await app2.send_message(user_id, "Message ilo thawn vak avangin Block i ni e.")
             return await app2.block_user(user_id)
         await app2.send_message(
             user_id,
