@@ -128,9 +128,9 @@ async def welcome(_, message: Message):
 
             await message.chat.restrict_member(member.id, ChatPermissions())
             text = (
-                f"{(member.mention())} Mihring i ni ngei em fiah lawk ang aw!\n"
-                f"Thlalak a thil lo lang ang chiah khi a hnuai ami button ah khuan {WELCOME_DELAY_KICK_SEC} "
-                "seconds chhung a i hmet hmanlo emaw, vawi 4 aia tam i tihdik loh chuan bot in a kick ang che."
+                f"{(member.mention())} Mihring i ni ngei em fiah lawk ang aw!\n\n"
+                f"Thlalak a thil inziak ang chiah khi a hnuai ami button ah khuan en mil la i hmet dawn nia {WELCOME_DELAY_KICK_SEC} "
+                "seconds chhung a i hmet hmanlo emaw, vawi 4 aia tam i tihdik loh chuan Group ah hian i awm ve a remlo ang."
             )
         except ChatAdminRequired:
             return
