@@ -166,7 +166,7 @@ keyboard = InlineKeyboardMarkup(
 async def start(_, message):
     if message.chat.type != "private":
         return await message.reply(
-            "Private ah minlo beia la.", reply_markup=keyboard
+            "Private ah minlo bia la.", reply_markup=keyboard
         )
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
