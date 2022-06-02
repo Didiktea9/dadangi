@@ -555,7 +555,7 @@ async def test_speedtest_cq(_, cq):
 async def pmpermit_func(answers, user_id, victim):
     if user_id != USERBOT_ID:
         return
-    caption = f"Chibai le, kei hi {USERBOT_NAME} personal bot kani a, Telegram lo join thar te kalo wish thin. Min siamtupa hi i be duh anih chuan Bot approve hun che Lo nghak lawk rawh message 5 aia tam ilo thawn chuan block i ni ang."
+    caption = f"Chibai le, kei hi {USERBOT_NAME} personal bot kani a, telegram lo join thar te kalo wish thin."
     buttons = InlineKeyboard(row_width=2)
     buttons.add(
         InlineKeyboardButton(
